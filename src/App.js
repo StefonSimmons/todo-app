@@ -19,7 +19,6 @@ function App() {
   // GET REQUEST
   const getToDoData = async () => {
     const res = await axios.get(baseURL, config)
-    // console.log(res)
     updateTodos(res.data.records)
   }
 
@@ -28,6 +27,11 @@ function App() {
     await axios.post(baseURL, { fields: formData }, config)
   }
 
+  // DELETE REQUEST 
+  const deleteToDoItem = async (itemID) => {
+    await axios.delete(`${baseURL}/${itemID}`, config)
+
+  }
 
   useEffect(() => {
     getToDoData()
@@ -37,13 +41,18 @@ function App() {
   return (
     <div>
       <nav className="nav-container">
+        <Link to='/'>Home</Link>
         <Link to="/add-todo">Add To-Do</Link>
-        <br/>
-        <Link to='/'>Go Home</Link>
       </nav>
-      <hr/>
+      {/* <hr /> */}
+
       <Route exact path="/">
-        <TodoList todos={todos} />
+        <TodoList
+          todos={todos}
+          deleteToDoItem={deleteToDoItem}
+          triggerRefresh={triggerRefresh}
+          refresh={refresh}
+        />
       </Route>
 
       <Route path="/items/:itemID">

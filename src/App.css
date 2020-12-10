@@ -1,19 +1,23 @@
-
+body{
+  margin: 0;
+}
 
 .nav-container{
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-a{
+.nav-container > a{
   text-decoration: none;
   font-weight: 700;
-  color: black;
+  color: black; 
+  padding: 0 15px;
+  font-size: 24px;
   
 }
 
-a:hover{
+.nav-container > a:hover{
   color: rgb(71, 19, 19)
 }
 

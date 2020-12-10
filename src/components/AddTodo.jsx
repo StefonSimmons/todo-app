@@ -23,33 +23,35 @@ export default function AddTodo(props) {
 
   const handleSubmit = () => {
     props.postToDoData(formData)
-    props.triggerRefresh(!props.refresh)
     history.push('/') // goes home
+    props.triggerRefresh(!props.refresh)
   }
 
 
   return (
     <div className="main">
-      <h2 className="create-title">Add A New To-Do Item</h2>
-      <form onSubmit={handleSubmit} className="create-form">
-        <input
-          className="create-input"
-          type="text"
-          placeholder="Todo Name"
-          name="name"
-          value={formData.name}
-          onChange={(e) => handleChange(e)}
-        />
-        <input
-          className="create-input"
-          type="text"
-          placeholder="Description"
-          name="description"
-          value={formData.description}
-          onChange={(e) => handleChange(e)}
-        />
-        <input className="create-btn" type="submit" value="Submit" />
-      </form>
+      <section className="create-form-back">
+        <h2 className="create-title">Add A New To-Do Item</h2>
+        <form onSubmit={handleSubmit} className="create-form">
+          <input
+            className="create-input"
+            type="text"
+            placeholder="Todo Name"
+            name="name"
+            value={formData.name}
+            onChange={(e) => handleChange(e)}
+          />
+          <input
+            className="create-input"
+            type="text"
+            placeholder="Description"
+            name="description"
+            value={formData.description}
+            onChange={(e) => handleChange(e)}
+          />
+          <input className="create-btn" type="submit" value="Submit" />
+        </form>
+      </section>
     </div>
   )
 }
