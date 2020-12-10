@@ -6,19 +6,24 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100px;
+  background-image: url('https://media.giphy.com/media/uf3jumi0zzUv6/giphy.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .nav-container > a{
   text-decoration: none;
   font-weight: 700;
-  color: black; 
+  color: white; 
   padding: 0 15px;
   font-size: 24px;
   
 }
 
 .nav-container > a:hover{
-  color: rgb(71, 19, 19)
+  color: rgb(230, 217, 217);
+
 }
 
 
