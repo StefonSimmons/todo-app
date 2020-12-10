@@ -41,7 +41,7 @@ export default function TodoList(props) {
   return (
     <div className="todo-list-main">
       <section className="todo-list-back">
-        <h1 className="todo-list-title">TO DO LIST</h1>
+        <h1 className="todo-list-title">TO-DO LIST</h1>
 
         <ol>
           {items}

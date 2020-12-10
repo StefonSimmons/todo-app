@@ -42,7 +42,7 @@ function App() {
     <div>
       <nav className="nav-container">
         <Link to='/'>Home</Link>
-        <Link to="/add-todo">Add To-Do</Link>
+        <Link to="/add-todo">New Item</Link>
       </nav>
       {/* <hr /> */}
 

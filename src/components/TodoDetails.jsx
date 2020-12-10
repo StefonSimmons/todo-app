@@ -1,5 +1,7 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+
+import './TodoDetails.css'
 
 export default function TodoDetails(props) {
 
@@ -11,15 +13,18 @@ export default function TodoDetails(props) {
 
   // console.log(todoItem)
   return (
-    <div>
-      <h1>TODO DETAILS</h1>
-      { todoItem &&
-        <>
-          <h4>{todoItem.fields.name}</h4>
-          <p>{todoItem.fields.description}</p>
-        </>
-      }
-      <Link to='/'>Go Home</Link>
+    <div className="todo-details-main">
+      <section className="todo-details-back">
+        <section className="todo-details">
+          {todoItem &&
+            <>
+              <h6 className="todo-details-name">{todoItem.fields.name}</h6>
+              <h5>Description:</h5>
+              <p className="todo-details-description">{todoItem.fields.description}</p>
+            </>
+          }
+        </section>
+      </section>
     </div>
   )
 }
