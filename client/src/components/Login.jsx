@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Login({ login, triggerRefresh, refresh }) {
+export default function Login({ login, unauthorized }) {
 
   const [formData, setFormData] = useState({
     email: '',
@@ -28,7 +28,7 @@ export default function Login({ login, triggerRefresh, refresh }) {
     <form className="register-form" onSubmit={(e) => handleSubmit(e)}>
       <h1 className="register-title">Login</h1>
       <input
-        className="register-input"
+        className={`register-input ${unauthorized && 'unauthorized'}`}
         type="text"
         name="email"
         value={formData.email}
@@ -36,14 +36,17 @@ export default function Login({ login, triggerRefresh, refresh }) {
         placeholder="email"
       />
       <input
-        className="register-input password"
+        className={`register-input password ${unauthorized && 'unauthorized'}`}
         type="password"
         name="password"
         value={formData.password}
         onChange={(e) => handleChange(e)}
         placeholder="password"
       />
-      <input className="register-btn" type="submit" value="Login" />
+      <input className="register-btn" type="submit" value={`${!unauthorized ? 'Login' : 'Try Again'}`} />
+      { unauthorized &&
+        <h5>Unauthorized. Incorrect email or password.</h5>
+      }
     </form>
   )
 }

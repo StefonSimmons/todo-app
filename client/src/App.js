@@ -26,34 +26,31 @@ function App() {
     password: ''
   })
   const [currentUser, setCurrUser] = useState({})
+  const [unauthorized, setUnauthorized] = useState(false)
   const history = useHistory()
 
-  // GET REQUEST
+
+  // GET REQUEST - Todo
   const getToDoData = async () => {
-    console.log('2: ', currentUser)
     const email = currentUser.fields && currentUser.fields.email
-    console.log('2b: ', email)
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     updateTodos(res.data.records)
-    console.log('2c: ', res)
   }
 
   // POST REQUEST - Todo
-  const postToDoData = async (formData) => {
-    console.log(formData)
-    await axios.post(todoBaseURL, { fields: formData }, config)
+  const postToDoData = async (fields) => {
+    await axios.post(todoBaseURL, { fields }, config)
     triggerRefresh(!refresh)
   }
 
-  // DELETE REQUEST 
+  // DELETE REQUEST - Todo
   const deleteToDoItem = async (itemID) => {
     await axios.delete(`${todoBaseURL}/${itemID}`, config)
   }
 
-  // PUT REQUEST
+  // PUT REQUEST - Todo
   const updateToDoItem = async (itemID, fields) => {
     await axios.put(`${todoBaseURL}/${itemID}`, { fields }, config)
-
   }
 
   // POST REQUEST - Password Digest & 
@@ -92,17 +89,18 @@ function App() {
     }
     // verifies the password typed in is the same as the password_digest
     const resp = await api.post('/sign-in', { loginAuth })
-
     if (resp.data.user) {
+      setUnauthorized(false)
       localStorage.setItem('token', resp.data.token)
       setCurrUser(user)
       triggerRefresh(!refresh)
       history.push('/')
+    } else {
+      setUnauthorized(true)
     }
   }
 
   // GET REQUEST - Verify User (Auth) //
-  //needed so that when we 
   const verifyUser = async () => {
     const token = localStorage.getItem('token')
 
@@ -189,6 +187,7 @@ function App() {
         <User
           login={login}
           register={register}
+          unauthorized={unauthorized}
           formData={registrationCred}
           setFormData={setRegCred}
         />

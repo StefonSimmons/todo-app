@@ -12,11 +12,11 @@ const listen = () => {
 // REGISTER
 const register = async (req, res) => {
   const credentials = req.body.registrationCred
-  const password = credentials.password 
+  const password = credentials.password
 
   const password_digest = await bcrypt.hash(password, SALT_ROUNDS) // hash password
 
-  const payload = {email: credentials.email}
+  const payload = { email: credentials.email }
   const token = jwt.sign(payload, TOKEN_KEY) // encrypt email payload
 
   res.json({ password_digest, token }) //respond with hashed password and encrupted payload/token
@@ -27,14 +27,16 @@ const signIn = async (req, res) => {
   const loginCredentials = req.body.loginAuth
   const password = loginCredentials.password
   const password_digest = loginCredentials.password_digest
-  
+
   if (await bcrypt.compare(password, password_digest)) { // bcrypt compares pw & hashed pw
-    const payload = {email: loginCredentials.email}
+    const payload = { email: loginCredentials.email }
     const token = jwt.sign(payload, TOKEN_KEY)
 
     res.status(201).json({ user: true, token })
   } else {
-    res.status(401).send("Invalid Credentials");
+    // res.json({ user: false })
+    // res.status(401).send()
+    res.send("Invalid Credentials")
   }
 }
 

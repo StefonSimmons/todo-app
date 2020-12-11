@@ -48,3 +48,8 @@
 .register-btn:hover{
   box-shadow: 4px 5px 5px grey;
 }
+
+.register-input.unauthorized{
+  border: solid 2px red;
+  box-shadow: 0 0 5px red;
+}
