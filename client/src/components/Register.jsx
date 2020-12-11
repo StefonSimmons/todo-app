@@ -1,7 +1,11 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
+import "./Register.css"
 
 export default function Register({ register, formData, setFormData }) {
+
+  const history = useHistory()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -11,21 +15,23 @@ export default function Register({ register, formData, setFormData }) {
     })
   }
 
-
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    register()
+    setFormData({
+      email: '',
+      username: '',
+      password: ''
+    })
+    history.push('/add-todo')
+  }
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={(e) => {
-        e.preventDefault()
-        register()
-        setFormData({
-          email: '',
-          username: '',
-          password: ''
-        })
-      }
-      }>
+    <div className="register-main">
+
+      <form className="register-form" onSubmit={(e) => handleSubmit(e)}>
+        <h1 className="register-title">Register</h1>
         <input
+          className="register-input"
           type="text"
           name="email"
           value={formData.email}
@@ -33,6 +39,7 @@ export default function Register({ register, formData, setFormData }) {
           placeholder="email"
         />
         <input
+          className="register-input"
           type="text"
           name="username"
           value={formData.username}
@@ -40,13 +47,14 @@ export default function Register({ register, formData, setFormData }) {
           placeholder="username"
         />
         <input
-          type="text"
+          className="register-input password"
+          type="password"
           name="password"
           value={formData.password}
           onChange={(e) => handleChange(e)}
           placeholder="password"
         />
-        <input type="submit" value="Register" />
+        <input className="register-btn" type="submit" value="Register" />
       </form>
     </div>
   )
