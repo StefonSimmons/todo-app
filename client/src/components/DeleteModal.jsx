@@ -12,7 +12,6 @@ export default function DeleteModal(props) {
         <span onClick={() => {
           
           props.setItemID(null)
-          props.updateShowModal(false)
         }}>
           <img src={closeIcon} alt="close" className="delete-modal-close" />
         </span>
@@ -25,7 +24,6 @@ export default function DeleteModal(props) {
               props.deleteToDoItem(props.itemID)
               props.triggerRefresh(!props.refresh)
               props.setItemID(null)
-              props.updateShowModal(false)
             }}>YES!</button>
         </section>
       </div>
