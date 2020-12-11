@@ -27,18 +27,17 @@ const signIn = async (req, res) => {
   const loginCredentials = req.body.loginAuth
   const password = loginCredentials.password
   const password_digest = loginCredentials.password_digest
-  if (await bcrypt.compare(password, password_digest)) {
+  
+  if (await bcrypt.compare(password, password_digest)) { // bcrypt compares pw & hashed pw
     res.status(201).json({ user: true })
   } else {
     res.status(401).send("Invalid Credentials");
   }
 }
-// VERIFY
-const verify = (req, res) => {
-  // 'req.header' grabs the header from the request which value is 'Bearer <token>'
-  // <token> was set in localstorage so we can grab it now
 
-  const token = req.header('authorization').split(' ')[1] // grabs the token from the header
+// VERIFY 
+const verify = (req, res) => {
+  const token = req.header('authorization').split(' ')[1] // grabs the token from the authorization header ('Bearer <token>')
   const decodedToken = jwt.verify(token, TOKEN_KEY) // decodes the token obj
   res.json(decodedToken.email) // responds with decoded value
 }

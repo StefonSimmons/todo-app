@@ -78,24 +78,30 @@ function App() {
   // GET REQUEST - Find One User &
   // POST REQUEST - User Login
   const login = async (loginCred) => {
+
     const email = loginCred.email
+    // gets user data from the email
     const res = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
-    const password_digest = res.data.records[0].fields.password
+    const user = res.data.records[0]
+    const password_digest = user.fields.password
+
     const loginAuth = {
-      email: loginCred.email,
+      email,
       password: loginCred.password,
       password_digest
     }
-    const authorized = await api.post('/sign-in', { loginAuth })
-    const user = res.data.records[0]
-    if (authorized.data.user) {
+    // verifies the password typed in is the same as the password_digest
+    const resp = await api.post('/sign-in', { loginAuth })
+
+    if (resp.data.user) {
       setCurrUser(user)
       triggerRefresh(!refresh)
       history.push('/')
     }
   }
 
-  // GET REQUEST - Verify User (Auth)
+  // GET REQUEST - Verify User (Auth) //
+  //needed so that when we 
   const verifyUser = async () => {
     const token = localStorage.getItem('token')
 
@@ -103,15 +109,26 @@ function App() {
       const header = {
         headers: { 'Authorization': `Bearer ${token}` }
       }
+      // verifies user email/id from token
       const res = await api.get('/verify', header)
       const email = res.data
+
+      // gets user data from the email
       const resp = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
       const user = resp.data.records[0]
+
       setCurrUser(user)
       triggerRefresh(!refresh)
     }
   }
-  
+
+  // LOGOUT
+  const logout = () => {
+    localStorage.removeItem('token')
+    setCurrUser({})
+    triggerRefresh(!refresh)
+  }
+
 
   useEffect(() => {
     getToDoData()
@@ -129,7 +146,7 @@ function App() {
         <Link to="/add-todo">New Item</Link>
         {currentUser.fields ?
           <>
-            <Link to="/register-login">Logout</Link>
+            <Link to="/register-login" onClick={logout}>Logout</Link>
             <h1>Hi, {currentUser.fields.username}</h1>
           </>
           :
