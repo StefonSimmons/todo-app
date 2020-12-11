@@ -94,6 +94,7 @@ function App() {
     const resp = await api.post('/sign-in', { loginAuth })
 
     if (resp.data.user) {
+      localStorage.setItem('token', resp.data.token)
       setCurrUser(user)
       triggerRefresh(!refresh)
       history.push('/')
@@ -109,11 +110,12 @@ function App() {
       const header = {
         headers: { 'Authorization': `Bearer ${token}` }
       }
-      // verifies user email/id from token
+      // verifies decoded token from localStorage 
+      // is the same as user email who signed-in / registered
       const res = await api.get('/verify', header)
       const email = res.data
 
-      // gets user data from the email
+      // gets user data from the email signature
       const resp = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
       const user = resp.data.records[0]
 

@@ -29,7 +29,10 @@ const signIn = async (req, res) => {
   const password_digest = loginCredentials.password_digest
   
   if (await bcrypt.compare(password, password_digest)) { // bcrypt compares pw & hashed pw
-    res.status(201).json({ user: true })
+    const payload = {email: loginCredentials.email}
+    const token = jwt.sign(payload, TOKEN_KEY)
+
+    res.status(201).json({ user: true, token })
   } else {
     res.status(401).send("Invalid Credentials");
   }

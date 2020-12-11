@@ -13,8 +13,8 @@ body{
 }
 
 .nav-container > h3{
-  color: white;
-  background: black;
+  color: black;
+  background: white;
   padding: 0 5px;
   border-radius: 4px;
   font-family: 'Nerko One', cursive;
