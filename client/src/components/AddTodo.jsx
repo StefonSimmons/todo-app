@@ -9,7 +9,8 @@ export default function AddTodo(props) {
 
   const [formData, setFormData] = useState({
     name: "",
-    description: ""
+    description: "",
+    email: [props.currentUser.id]
   })
 
   const handleChange = (e) => {

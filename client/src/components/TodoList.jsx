@@ -6,7 +6,7 @@ import './TodoList.css'
 import deleteIcon from '../images/delete.png'
 
 export default function TodoList(props) {
-  
+
   const [itemID, setItemID] = useState(null)
 
   const items = props.todos.map(item => {
@@ -34,9 +34,13 @@ export default function TodoList(props) {
 
       <section className="todo-list-back">
         <h1 className="todo-list-title">TO-DO LIST</h1>
-        <ol>
-          {items}
-        </ol>
+        { props.todos.length ?
+          <ol>
+            {items}
+          </ol>
+          :
+          <Link to='/add-todo'>Nothing Here Yet</Link>
+        }
       </section>
 
       { itemID &&

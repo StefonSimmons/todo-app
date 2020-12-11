@@ -4,7 +4,7 @@ import Register from './Register'
 
 import './User.css'
 
-export default function User({ formData, login, register, setFormData }) {
+export default function User({ formData, login, register, setFormData, triggerRefresh, refresh }) {
 
   const [tab, updateTab] = useState(true)
 
@@ -21,7 +21,11 @@ export default function User({ formData, login, register, setFormData }) {
           setFormData={setFormData}
         />
         :
-        <Login login={login}/>
+        <Login
+          login={login}
+          triggerRefresh={triggerRefresh}
+          refresh={refresh}
+        />
       }
     </div>
   )

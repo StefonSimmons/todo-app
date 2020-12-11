@@ -9,14 +9,14 @@ const {listen, register, signIn} = require('./controllers')
 // ======================
 // Use Body-Parser and Cors
 // ======================
-
 app.use(bodyParser.json())
 app.use(cors())
+
+
 // ======================
 // Express HTTP Requests
 // ======================
 app.listen(PORT, listen)
-
 app.post('/users', register)
 app.post('/sign-in', signIn)
 

@@ -25,11 +25,14 @@ function App() {
     username: '',
     password: ''
   })
+  const [currentUser, setCurrUser] = useState({})
 
   // GET REQUEST
   const getToDoData = async () => {
-    const res = await axios.get(todoBaseURL, config)
+    const email = currentUser.fields && currentUser.fields.email
+    const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     updateTodos(res.data.records)
+    console.log(res)
   }
 
   // POST REQUEST - Todo
@@ -71,24 +74,29 @@ function App() {
       password: loginCred.password,
       password_digest
     }
-    await api.post('/sign-in', { loginAuth })
+    const authorized = await api.post('/sign-in', { loginAuth })
+    const user = res.data.records[0]
+    if (authorized.data.user) setCurrUser(user)
   }
 
   useEffect(() => {
     getToDoData()
+    console.log('heeeerre')
   }, [refresh])
 
 
   return (
     <div>
       <nav className="nav-container">
-        <Link to='/'>Home</Link>
+        <Link to='/'>List</Link>
         <Link to="/add-todo">New Item</Link>
         <Link to="/register-login">Register / Login</Link>
+        {currentUser.fields && <h1>{currentUser.fields.username}</h1>}
       </nav>
-
+      {console.log(todos)}
       <Route exact path="/">
         <TodoList
+          currentUser={currentUser}
           todos={todos}
           deleteToDoItem={deleteToDoItem}
           triggerRefresh={triggerRefresh}
@@ -110,6 +118,7 @@ function App() {
 
       <Route path="/add-todo">
         <AddTodo
+          currentUser={currentUser}
           postToDoData={postToDoData}
           triggerRefresh={triggerRefresh}
           refresh={refresh}
@@ -122,6 +131,8 @@ function App() {
           register={register}
           formData={registrationCred}
           setFormData={setRegCred}
+          triggerRefresh={triggerRefresh}
+          refresh={refresh}
         />
       </Route>
 
