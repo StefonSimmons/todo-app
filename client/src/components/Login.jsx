@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
 export default function Login({ login, triggerRefresh, refresh }) {
-  const history = useHistory()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -23,8 +21,6 @@ export default function Login({ login, triggerRefresh, refresh }) {
       email: '',
       password: ''
     })
-    history.push('/')
-    triggerRefresh(!refresh)
   }
 
   return (

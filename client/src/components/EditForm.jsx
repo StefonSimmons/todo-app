@@ -8,7 +8,8 @@ export default function EditForm(props) {
     if (props.todoItem) {
       setFields({
         name: props.todoItem.fields.name,
-        description: props.todoItem.fields.description
+        description: props.todoItem.fields.description,
+        email: [props.currentUser.id]
       })
     }
   }, [])

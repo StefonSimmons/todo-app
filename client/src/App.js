@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { todoBaseURL, usersBaseURL, config } from './services/index'
@@ -26,13 +26,16 @@ function App() {
     password: ''
   })
   const [currentUser, setCurrUser] = useState({})
+  const history = useHistory()
 
   // GET REQUEST
   const getToDoData = async () => {
+    console.log('2: ', currentUser)
     const email = currentUser.fields && currentUser.fields.email
+    console.log('2b: ', email)
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     updateTodos(res.data.records)
-    console.log(res)
+    console.log('2c: ', res)
   }
 
   // POST REQUEST - Todo
@@ -76,12 +79,15 @@ function App() {
     }
     const authorized = await api.post('/sign-in', { loginAuth })
     const user = res.data.records[0]
-    if (authorized.data.user) setCurrUser(user)
+    if (authorized.data.user) {
+      setCurrUser(user)
+      triggerRefresh(!refresh)
+      history.push('/')
+    }
   }
 
   useEffect(() => {
     getToDoData()
-    console.log('heeeerre')
   }, [refresh])
 
 
@@ -90,10 +96,15 @@ function App() {
       <nav className="nav-container">
         <Link to='/'>List</Link>
         <Link to="/add-todo">New Item</Link>
-        <Link to="/register-login">Register / Login</Link>
-        {currentUser.fields && <h1>{currentUser.fields.username}</h1>}
+        {currentUser.fields ?
+          <>
+            <Link to="/register-login">Logout</Link>
+            <h1>Hi, {currentUser.fields.username}</h1>
+          </>
+          :
+          <Link to="/register-login">Register / Login</Link>
+        }
       </nav>
-      {console.log(todos)}
       <Route exact path="/">
         <TodoList
           currentUser={currentUser}
@@ -109,6 +120,7 @@ function App() {
 
       <Route path="/items/:itemID">
         <TodoDetails
+          currentUser={currentUser}
           todos={todos}
           updateToDoItem={updateToDoItem}
           triggerRefresh={triggerRefresh}
@@ -131,8 +143,6 @@ function App() {
           register={register}
           formData={registrationCred}
           setFormData={setRegCred}
-          triggerRefresh={triggerRefresh}
-          refresh={refresh}
         />
       </Route>
 

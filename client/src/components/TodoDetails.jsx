@@ -27,6 +27,7 @@ export default function TodoDetails(props) {
             </>
             :
             <EditForm
+              currentUser={props.currentUser}
               itemID={itemID}
               todoItem={todoItem}
               updateToDoItem={props.updateToDoItem}
@@ -36,10 +37,10 @@ export default function TodoDetails(props) {
             />
           }
           <section>
-            { !editForm ?
-            <button onClick={() => showEditForm(true)}>Edit</button>
+            {!editForm ?
+              <button onClick={() => showEditForm(true)}>Edit</button>
               :
-            <button onClick={() => showEditForm(false)}>Cancel</button>
+              <button onClick={() => showEditForm(false)}>Cancel</button>
             }
           </section>
         </section>
