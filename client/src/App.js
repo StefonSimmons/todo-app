@@ -40,7 +40,9 @@ function App() {
 
   // POST REQUEST - Todo
   const postToDoData = async (formData) => {
+    console.log(formData)
     await axios.post(todoBaseURL, { fields: formData }, config)
+    triggerRefresh(!refresh)
   }
 
   // DELETE REQUEST 
@@ -51,19 +53,26 @@ function App() {
   // PUT REQUEST
   const updateToDoItem = async (itemID, fields) => {
     await axios.put(`${todoBaseURL}/${itemID}`, { fields }, config)
+
   }
 
   // POST REQUEST - Password Digest & 
   // POST REQUEST - User Registration
   const register = async () => {
     const res = await api.post('/users', { registrationCred })
-    const password_digest = res.data
+    const password_digest = res.data.password_digest
+    localStorage.setItem('token', res.data.token)
+
     const fields = {
       email: registrationCred.email,
       username: registrationCred.username,
       password: password_digest
     }
-    await axios.post(usersBaseURL, { fields }, config)
+    const resp = await axios.post(usersBaseURL, { fields }, config)
+
+    setCurrUser(resp.data)
+    triggerRefresh(!refresh)
+    history.push('/add-todo')
   }
 
   // GET REQUEST - Find One User &
@@ -86,10 +95,32 @@ function App() {
     }
   }
 
+  // GET REQUEST - Verify User (Auth)
+  const verifyUser = async () => {
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      const header = {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }
+      const res = await api.get('/verify', header)
+      const email = res.data
+      const resp = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
+      const user = resp.data.records[0]
+      setCurrUser(user)
+      triggerRefresh(!refresh)
+    }
+  }
+  
+
   useEffect(() => {
     getToDoData()
   }, [refresh])
 
+
+  useEffect(() => {
+    verifyUser()
+  }, [])
 
   return (
     <div>
@@ -132,8 +163,6 @@ function App() {
         <AddTodo
           currentUser={currentUser}
           postToDoData={postToDoData}
-          triggerRefresh={triggerRefresh}
-          refresh={refresh}
         />
       </Route>
 

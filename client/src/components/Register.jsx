@@ -23,7 +23,6 @@ export default function Register({ register, formData, setFormData }) {
       username: '',
       password: ''
     })
-    history.push('/add-todo')
   }
   return (
 

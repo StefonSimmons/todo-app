@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import "./AddTodo.css"
@@ -24,8 +24,7 @@ export default function AddTodo(props) {
 
   const handleSubmit = () => {
     props.postToDoData(formData)
-    history.push('/') // goes home
-    props.triggerRefresh(!props.refresh)
+    history.push('/')
   }
 
 
