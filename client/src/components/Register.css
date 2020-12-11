@@ -1,12 +1,3 @@
-.register-main{
-  background-image: url('../images/productive4.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .register-form{
   background: white;

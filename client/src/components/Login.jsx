@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import "./Register.css"
-
-export default function Register({ register, formData, setFormData }) {
-
+export default function Login({ login }) {
   const history = useHistory()
 
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({
@@ -17,18 +18,18 @@ export default function Register({ register, formData, setFormData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    register()
+    login(formData)
     setFormData({
       email: '',
-      username: '',
       password: ''
     })
-    history.push('/add-todo')
+    history.push('/')
   }
+
   return (
 
     <form className="register-form" onSubmit={(e) => handleSubmit(e)}>
-      <h1 className="register-title">Register</h1>
+      <h1 className="register-title">Login</h1>
       <input
         className="register-input"
         type="text"
@@ -38,14 +39,6 @@ export default function Register({ register, formData, setFormData }) {
         placeholder="email"
       />
       <input
-        className="register-input"
-        type="text"
-        name="username"
-        value={formData.username}
-        onChange={(e) => handleChange(e)}
-        placeholder="username"
-      />
-      <input
         className="register-input password"
         type="password"
         name="password"
@@ -53,7 +46,7 @@ export default function Register({ register, formData, setFormData }) {
         onChange={(e) => handleChange(e)}
         placeholder="password"
       />
-      <input className="register-btn" type="submit" value="Register" />
+      <input className="register-btn" type="submit" value="Login" />
     </form>
   )
 }

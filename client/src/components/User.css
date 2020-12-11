@@ -1,0 +1,35 @@
+.register-login-main{
+  background-image: url('../images/productive4.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-tabs{
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+.user-tabs > h1{
+  padding: 15px;
+  background: white;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+.user-tabs > h1:hover{
+  background-color: rgb(212, 201, 201);
+}
+.user-tabs > h1:active{
+  transform: scale(.94);
+}
+.user-tabs > h1:nth-child(2){
+  border-left: solid 2px black;
+}
+.user-tabs > h1:nth-child(1){
+  border-right: solid 2px black
+}

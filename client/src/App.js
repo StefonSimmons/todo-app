@@ -12,7 +12,7 @@ import './App.css'
 import TodoList from './components/TodoList'
 import TodoDetails from './components/TodoDetails'
 import AddTodo from './components/AddTodo'
-import Register from './components/Register'
+import User from './components/User'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
   const [gif, setGif] = useState('')
   const [todos, updateTodos] = useState([])
   const [refresh, triggerRefresh] = useState(false)
-  const [formData, setFormData] = useState({
+  const [registrationCred, setRegCred] = useState({
     email: '',
     username: '',
     password: ''
@@ -47,16 +47,31 @@ function App() {
     await axios.put(`${todoBaseURL}/${itemID}`, { fields }, config)
   }
 
+  // POST REQUEST - Password Digest & 
   // POST REQUEST - User Registration
   const register = async () => {
-    const res = await api.post('/users', { formData })
+    const res = await api.post('/users', { registrationCred })
     const password_digest = res.data
     const fields = {
-      email: formData.email,
-      username: formData.username,
+      email: registrationCred.email,
+      username: registrationCred.username,
       password: password_digest
     }
     await axios.post(usersBaseURL, { fields }, config)
+  }
+
+  // GET REQUEST - Find One User &
+  // POST REQUEST - User Login
+  const login = async (loginCred) => {
+    const email = loginCred.email
+    const res = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
+    const password_digest = res.data.records[0].fields.password
+    const loginAuth = {
+      email: loginCred.email,
+      password: loginCred.password,
+      password_digest
+    }
+    await api.post('/sign-in', { loginAuth })
   }
 
   useEffect(() => {
@@ -69,7 +84,7 @@ function App() {
       <nav className="nav-container">
         <Link to='/'>Home</Link>
         <Link to="/add-todo">New Item</Link>
-        <Link to="/register">Register</Link>
+        <Link to="/register-login">Register / Login</Link>
       </nav>
 
       <Route exact path="/">
@@ -101,11 +116,12 @@ function App() {
         />
       </Route>
 
-      <Route path="/register">
-        <Register
+      <Route path="/register-login">
+        <User
+          login={login}
           register={register}
-          formData={formData}
-          setFormData={setFormData}
+          formData={registrationCred}
+          setFormData={setRegCred}
         />
       </Route>
 
