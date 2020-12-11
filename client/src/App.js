@@ -142,12 +142,12 @@ function App() {
   return (
     <div>
       <nav className="nav-container">
-        <Link to='/'>List</Link>
-        <Link to="/add-todo">New Item</Link>
         {currentUser.fields ?
           <>
+            <h3>Hi, {currentUser.fields.username}!</h3>
+            <Link to='/'>List</Link>
+            <Link to="/add-todo">New Item</Link>
             <Link to="/register-login" onClick={logout}>Logout</Link>
-            <h1>Hi, {currentUser.fields.username}</h1>
           </>
           :
           <Link to="/register-login">Register / Login</Link>

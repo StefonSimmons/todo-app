@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import DeleteModal from './DeleteModal'
 
 import './TodoList.css'
@@ -34,12 +34,15 @@ export default function TodoList(props) {
 
       <section className="todo-list-back">
         <h1 className="todo-list-title">TO-DO LIST</h1>
-        { props.todos.length ?
+        {props.todos.length ?
           <ol>
             {items}
           </ol>
           :
-          <Link to='/add-todo'>Nothing Here Yet</Link>
+          <>
+            <h4>Nothing Here Yet</h4>
+            <Link to='/add-todo'>Let's Get to Work</Link>
+          </>
         }
       </section>
 
