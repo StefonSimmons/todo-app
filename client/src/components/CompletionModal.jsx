@@ -2,9 +2,9 @@ import React from 'react'
 
 import closeIcon from '../images/clear.png'
 
-import './DeleteModal.css'
+import './CompletionModal.css'
 
-export default function DeleteModal(props) {
+export default function CompletionModal(props) {
 
   return (
     <section className="delete-modal-back">
@@ -21,7 +21,6 @@ export default function DeleteModal(props) {
             className="delete-modal-btn"
             onClick={() => {
               props.deleteToDoItem(props.itemID)
-              props.triggerRefresh(!props.refresh)
               props.setItemID(null)
             }}>YES!</button>
         </section>

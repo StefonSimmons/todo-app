@@ -47,6 +47,7 @@ function App() {
   // DELETE REQUEST - Todo
   const deleteToDoItem = async (itemID) => {
     await axios.delete(`${todoBaseURL}/${itemID}`, config)
+    triggerRefresh(!refresh)
   }
 
   // PUT REQUEST - Todo
@@ -159,8 +160,6 @@ function App() {
           currentUser={currentUser}
           todos={todos}
           deleteToDoItem={deleteToDoItem}
-          triggerRefresh={triggerRefresh}
-          refresh={refresh}
           gif={gif}
           setGif={setGif}
           gifs={gifs}

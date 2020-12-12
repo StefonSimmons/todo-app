@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import DeleteModal from './DeleteModal'
+import CompletionModal from './CompletionModal'
 import PopOver from './PopOver'
 
 import './TodoList.css'
@@ -22,16 +22,20 @@ export default function TodoList(props) {
           <img
             src={deleteIcon} alt="delete"
             className="todo-list-delete"
-            onClick={() => {
-              const randoIdx = Math.floor(Math.random() * props.gifs.length)
-              props.setGif(props.gifs[randoIdx])
-              setItemID(item.id)
-            }}
+            
           />
           <input
+            id="complete"
+            type="checkbox"
             onMouseOver={(e) => togglePopOver(e.target.value)}
             onMouseLeave={() => togglePopOver(false)}
-            type="checkbox"
+            onClick={(e) => {
+              if (e.target.checked) {
+                const randoIdx = Math.floor(Math.random() * props.gifs.length)
+                props.setGif(props.gifs[randoIdx])
+                setItemID(item.id)
+              }
+            }}
             value={item.id}
           />
           {popOver === item.id && <PopOver/>}
@@ -58,13 +62,11 @@ export default function TodoList(props) {
       </section>
 
       { itemID &&
-        <DeleteModal
+        <CompletionModal
           gif={props.gif}
           setItemID={setItemID}
           itemID={itemID}
           deleteToDoItem={props.deleteToDoItem}
-          triggerRefresh={props.triggerRefresh}
-          refresh={props.refresh}
         />
       }
 
