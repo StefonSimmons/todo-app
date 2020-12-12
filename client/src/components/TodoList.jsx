@@ -11,6 +11,7 @@ export default function TodoList(props) {
 
   const redirect = !props.currentUser.fields && !localStorage.getItem('token') && <Redirect to='/register-login' />
 
+  const [formData, setFormData] = useState()
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
   const [popOver, togglePopOver] = useState(false)
@@ -40,6 +41,12 @@ export default function TodoList(props) {
                 const randoIdx = Math.floor(Math.random() * props.gifs.length)
                 props.setGif(props.gifs[randoIdx])
                 setCompletionItemID(item.id)
+                setFormData({
+                  name: item.fields.name,
+                  description: item.fields.description,
+                  email: [props.currentUser.id],
+                  complete: true
+                })
               }
             }}
             value={item.id}
@@ -72,7 +79,8 @@ export default function TodoList(props) {
           gif={props.gif}
           setCompletionItemID={setCompletionItemID}
           completionItemID={completionItemID}
-          deleteToDoItem={props.deleteToDoItem}
+          updateToDoItem={props.updateToDoItem}
+          formData={formData}
         />
       }
       { deletionItemID &&

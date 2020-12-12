@@ -5,7 +5,7 @@ import closeIcon from '../images/clear.png'
 import './CompletionModal.css'
 
 export default function CompletionModal(props) {
-
+  
   return (
     <section className="completion-modal-back">
       <div>
@@ -20,7 +20,7 @@ export default function CompletionModal(props) {
           <button
             className="completion-modal-btn"
             onClick={() => {
-              // props.deleteToDoItem(props.completionItemID)
+              props.updateToDoItem(props.completionItemID, props.formData)
               props.setCompletionItemID(null)
             }}>YES!</button>
         </section>

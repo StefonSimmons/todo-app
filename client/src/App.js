@@ -159,6 +159,7 @@ function App() {
         <TodoList
           currentUser={currentUser}
           todos={todos}
+          updateToDoItem={updateToDoItem}
           deleteToDoItem={deleteToDoItem}
           gif={gif}
           setGif={setGif}
