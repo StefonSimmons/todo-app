@@ -15,14 +15,13 @@ export default function DeletionModal(props) {
           <img src={closeIcon} alt="close" className="deletion-modal-close" />
         </span>
         <section className="deletion-modal-content">
-          <h5 className="deletion-modal-text">Nice! So, you did the thing!?</h5>
-          <img src={props.gif} alt="done" className="deletion-modal-gif" />
+          <h5 className="deletion-modal-text">Was This Task a Mistake?</h5>
           <button
             className="deletion-modal-btn"
             onClick={() => {
               props.deleteToDoItem(props.deletionItemID)
               props.setDeletionItemID(null)
-            }}>YES!</button>
+            }}>DELETE!</button>
         </section>
       </div>
     </section>

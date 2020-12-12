@@ -30,9 +30,7 @@
   align-items: center;
   justify-content: space-around;
 }
-.deletion-modal-gif{
-  width: 300px;
-}
+
 .deletion-modal-text{
   margin: 0;
   font-family: 'Nerko One', cursive;

@@ -25,11 +25,7 @@ export default function TodoList(props) {
           <img
             src={deleteIcon} alt="delete"
             className="todo-list-delete"
-            onClick={() => {
-              const randoIdx = Math.floor(Math.random() * props.gifs.length)
-              props.setGif(props.gifs[randoIdx])
-              setDeletionItemID(item.id)
-            }}
+            onClick={() => setDeletionItemID(item.id)}
           />
           <input
             id="complete"
@@ -85,7 +81,6 @@ export default function TodoList(props) {
       }
       { deletionItemID &&
         <DeletionModal
-          gif={props.gif}
           setDeletionItemID={setDeletionItemID}
           deletionItemID={deletionItemID}
           deleteToDoItem={props.deleteToDoItem}
