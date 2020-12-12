@@ -1,0 +1,39 @@
+.todo-details-main{
+  background-image: url('../images/productive3.jpg');
+  background-size: cover;
+  height: 100vh;
+
+}
+
+
+.todo-details-back{
+  background-color: rgba(255,255,255,.3);
+  border-radius: 3px;
+  padding: 30px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.todo-details{
+  background: white;
+  border: solid 4px black;
+  padding: 30px;
+  border-radius: 4px;
+  height: auto;
+}
+.todo-details-name{
+  font-family: 'Nerko One', cursive;
+  letter-spacing: 2px;
+  font-size: 24px;
+  margin: 5px;
+  padding-bottom: 10px
+}
+.todo-details-description{
+  font-family: 'Nerko One', cursive;
+  letter-spacing: 2px;
+  font-size: 18px;
+  margin: 5px
+}

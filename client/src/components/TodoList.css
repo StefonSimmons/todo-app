@@ -1,0 +1,63 @@
+.todo-list-main{
+  background-image: url('../images/productive2.jpg');
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.todo-list-back{
+  background-color: rgba(255,255,255,.5);
+  border-radius: 3px;
+  padding: 30px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-list-title{
+  font-family: 'Nerko One', cursive;
+  font-size: 36px;
+}
+
+.todo-list-item{
+  font-family: 'Nerko One', cursive;
+  letter-spacing: 2px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  height: 70px;
+  width: 800px;
+}
+.todo-list-link{
+  color: black;
+  font-family: 'Nerko One', cursive;
+}
+
+.todo-list-link:hover{
+  color: rgb(29, 28, 28);
+  transform: scale(1.05)
+}
+
+.todo-list-options{
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.todo-list-delete{
+  cursor: pointer;
+}
+
+@keyframes shake{
+  0%{ transform: rotate(45deg)}
+  25%{ transform: rotate(0deg)}
+  50%{ transform: rotate(-45deg)}
+  75%{ transform: rotate(0deg)}
+  100%{ transform: rotate(45deg)}
+}
+.todo-list-delete:hover{
+  animation: shake .70s ease-in 1.25;
+}
