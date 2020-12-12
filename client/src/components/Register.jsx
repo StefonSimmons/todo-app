@@ -1,11 +1,8 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 
 import "./Register.css"
 
 export default function Register({ register, formData, setFormData }) {
-
-  const history = useHistory()
 
   const handleChange = (e) => {
     const { name, value } = e.target

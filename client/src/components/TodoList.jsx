@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import DeleteModal from './DeleteModal'
 
 import './TodoList.css'

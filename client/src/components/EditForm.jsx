@@ -12,6 +12,7 @@ export default function EditForm(props) {
         email: [props.currentUser.id]
       })
     }
+    // eslint-disable-next-line
   }, [])
 
   const handleChange = (e) => {
