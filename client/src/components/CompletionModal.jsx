@@ -7,21 +7,21 @@ import './CompletionModal.css'
 export default function CompletionModal(props) {
 
   return (
-    <section className="delete-modal-back">
+    <section className="completion-modal-back">
       <div>
         <span onClick={() => {
-          props.setItemID(null)
+          props.setCompletionItemID(null)
         }}>
-          <img src={closeIcon} alt="close" className="delete-modal-close" />
+          <img src={closeIcon} alt="close" className="completion-modal-close" />
         </span>
-        <section className="delete-modal-content">
-          <h5 className="delete-modal-text">Nice! So, you did the thing!?</h5>
-          <img src={props.gif} alt="done" className="delete-modal-gif" />
+        <section className="completion-modal-content">
+          <h5 className="completion-modal-text">Nice! So, you did the thing!?</h5>
+          <img src={props.gif} alt="done" className="completion-modal-gif" />
           <button
-            className="delete-modal-btn"
+            className="completion-modal-btn"
             onClick={() => {
-              props.deleteToDoItem(props.itemID)
-              props.setItemID(null)
+              // props.deleteToDoItem(props.completionItemID)
+              props.setCompletionItemID(null)
             }}>YES!</button>
         </section>
       </div>

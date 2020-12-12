@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import CompletionModal from './CompletionModal'
+import DeletionModal from './DeletionModal'
 import PopOver from './PopOver'
 
 import './TodoList.css'
@@ -10,7 +11,8 @@ export default function TodoList(props) {
 
   const redirect = !props.currentUser.fields && !localStorage.getItem('token') && <Redirect to='/register-login' />
 
-  const [itemID, setItemID] = useState(null)
+  const [deletionItemID, setDeletionItemID] = useState(null)
+  const [completionItemID, setCompletionItemID] = useState(null)
   const [popOver, togglePopOver] = useState(false)
 
   const items = props.todos.map(item => {
@@ -22,7 +24,11 @@ export default function TodoList(props) {
           <img
             src={deleteIcon} alt="delete"
             className="todo-list-delete"
-            
+            onClick={() => {
+              const randoIdx = Math.floor(Math.random() * props.gifs.length)
+              props.setGif(props.gifs[randoIdx])
+              setDeletionItemID(item.id)
+            }}
           />
           <input
             id="complete"
@@ -33,12 +39,12 @@ export default function TodoList(props) {
               if (e.target.checked) {
                 const randoIdx = Math.floor(Math.random() * props.gifs.length)
                 props.setGif(props.gifs[randoIdx])
-                setItemID(item.id)
+                setCompletionItemID(item.id)
               }
             }}
             value={item.id}
           />
-          {popOver === item.id && <PopOver/>}
+          {popOver === item.id && <PopOver />}
         </section>
       </div>
     )
@@ -61,11 +67,19 @@ export default function TodoList(props) {
         }
       </section>
 
-      { itemID &&
+      { completionItemID &&
         <CompletionModal
           gif={props.gif}
-          setItemID={setItemID}
-          itemID={itemID}
+          setCompletionItemID={setCompletionItemID}
+          completionItemID={completionItemID}
+          deleteToDoItem={props.deleteToDoItem}
+        />
+      }
+      { deletionItemID &&
+        <DeletionModal
+          gif={props.gif}
+          setDeletionItemID={setDeletionItemID}
+          deletionItemID={deletionItemID}
           deleteToDoItem={props.deleteToDoItem}
         />
       }

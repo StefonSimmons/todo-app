@@ -1,5 +1,5 @@
 
-.completion-modal-back{
+.deletion-modal-back{
   position: fixed;
   left:0;
   top:0;
@@ -10,16 +10,16 @@
   align-items: center;
   justify-content: center;
 }
-.completion-modal-back > div{
+.deletion-modal-back > div{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-.completion-modal-close{
+.deletion-modal-close{
   cursor: pointer;
 }
 
-.completion-modal-content{
+.deletion-modal-content{
   background: white;
   border: solid 4px black;
   width: 400px;
@@ -30,16 +30,16 @@
   align-items: center;
   justify-content: space-around;
 }
-.completion-modal-gif{
+.deletion-modal-gif{
   width: 300px;
 }
-.completion-modal-text{
+.deletion-modal-text{
   margin: 0;
   font-family: 'Nerko One', cursive;
   font-size: 24px;
   letter-spacing: 2px;
 }
-.completion-modal-btn{
+.deletion-modal-btn{
   width: 100px;
   height: 30px;
   border-radius: 5px;
@@ -50,6 +50,6 @@
 
   transition: all .3s ease-in;
 }
-.completion-modal-btn:hover{
+.deletion-modal-btn:hover{
   box-shadow: 4px 5px 5px grey;
 }
