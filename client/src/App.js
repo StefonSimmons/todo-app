@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Link, useHistory } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { todoBaseURL, usersBaseURL, config } from './services/index'
@@ -13,6 +13,7 @@ import TodoList from './components/TodoList'
 import TodoDetails from './components/TodoDetails'
 import AddTodo from './components/AddTodo'
 import User from './components/User'
+import Nav from './components/Nav'
 
 
 function App() {
@@ -77,27 +78,35 @@ function App() {
   const login = async (loginCred) => {
 
     const email = loginCred.email
-    // gets user data from the email
+    // gets user data from the email in airtable
     const res = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     const user = res.data.records[0]
-    const password_digest = user.fields.password
 
-    const loginAuth = {
-      email,
-      password: loginCred.password,
-      password_digest
-    }
-    // verifies the password typed in is the same as the password_digest
-    const resp = await api.post('/sign-in', { loginAuth })
-    if (resp.data.user) {
-      setUnauthorized(false)
-      localStorage.setItem('token', resp.data.token)
-      setCurrUser(user)
-      triggerRefresh(!refresh)
-      history.push('/')
+    if (user) {
+      const password_digest = user.fields.password
+
+      const loginAuth = {
+        email,
+        password: loginCred.password,
+        password_digest
+      }
+
+      // verifies the password typed in is the same as the password_digest
+      const resp = await api.post('/sign-in', { loginAuth })
+      if (resp.data.user) {
+        setUnauthorized(false)
+        localStorage.setItem('token', resp.data.token)
+        setCurrUser(user)
+        triggerRefresh(!refresh)
+        history.push('/')
+      } else {
+        setUnauthorized(true)
+      }
+
     } else {
       setUnauthorized(true)
     }
+
   }
 
   // GET REQUEST - Verify User (Auth) //
@@ -132,27 +141,19 @@ function App() {
 
   useEffect(() => {
     getToDoData()
+    // eslint-disable-next-line
   }, [refresh])
 
 
   useEffect(() => {
     verifyUser()
+    // eslint-disable-next-line
   }, [])
 
   return (
     <div>
-      <nav className="nav-container">
-        {currentUser.fields ?
-          <>
-            <h3>Hi, {currentUser.fields.username}!</h3>
-            <Link to='/'>List</Link>
-            <Link to="/add-todo">New Item</Link>
-            <Link to="/register-login" onClick={logout}>Logout</Link>
-          </>
-          :
-          <Link to="/register-login">Register / Login</Link>
-        }
-      </nav>
+      <Nav currentUser={currentUser} logout={logout} />
+      
       <Route exact path="/">
         <TodoList
           currentUser={currentUser}

@@ -31,12 +31,12 @@ export default function AddTodo(props) {
   return (
     <div className="main">
       <section className="create-form-back">
-        <h2 className="create-title">Add A New To-Do Item</h2>
+        <h2 className="create-title">Add A New Will-Do Item</h2>
         <form onSubmit={handleSubmit} className="create-form">
           <input
             className="create-input"
             type="text"
-            placeholder="Todo Name"
+            placeholder="Will-Do Task"
             name="name"
             value={formData.name}
             onChange={(e) => handleChange(e)}

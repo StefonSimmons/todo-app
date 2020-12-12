@@ -33,7 +33,7 @@ export default function TodoList(props) {
     <div className="todo-list-main">
 
       <section className="todo-list-back">
-        <h1 className="todo-list-title">TO-DO LIST</h1>
+        <h1 className="todo-list-title">Will-DO LIST</h1>
         {props.todos.length ?
           <ol>
             {items}

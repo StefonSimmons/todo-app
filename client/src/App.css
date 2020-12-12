@@ -1,7 +1,12 @@
 body{
   margin: 0;
+  overflow: auto;
+  height: 100%;
 }
-
+html {
+  overflow: hidden;
+  height: 100%;
+}
 .nav-container{
   display: flex;
   align-items: center;
