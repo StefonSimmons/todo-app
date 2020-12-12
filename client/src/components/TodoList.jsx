@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import DeleteModal from './DeleteModal'
 
 import './TodoList.css'
 import deleteIcon from '../images/delete.png'
 
 export default function TodoList(props) {
+
+  const redirect = !props.currentUser.fields && <Redirect to='/register-login'/>
 
   const [itemID, setItemID] = useState(null)
 
@@ -31,7 +33,7 @@ export default function TodoList(props) {
 
   return (
     <div className="todo-list-main">
-
+      {redirect}
       <section className="todo-list-back">
         <h1 className="todo-list-title">Will-DO LIST</h1>
         {props.todos.length ?

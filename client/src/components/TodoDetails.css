@@ -37,3 +37,23 @@
   font-size: 18px;
   margin: 5px
 }
+
+.todo-details-btn{
+  width: 100px;
+  height: 30px;
+  margin-top: 15px;
+  border-radius: 5px;
+  border: solid 2px black; 
+  background: black;
+  color: rgb(230, 217, 217);
+  cursor: pointer;
+
+  transition: all .3s ease-in;
+}
+.todo-details-btn:hover{
+  box-shadow: 4px 5px 5px grey;
+}
+
+.cancel{
+  background: red
+}

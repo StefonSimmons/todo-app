@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken')
 
 const SALT_ROUNDS = 11
 const TOKEN_KEY = process.env.TOKEN_KEY
+
+
 // LISTEN
 const listen = () => {
   console.log('server is listening')
@@ -34,8 +36,7 @@ const signIn = async (req, res) => {
 
     res.status(201).json({ user: true, token })
   } else {
-    // res.json({ user: false })
-    // res.status(401).send()
+
     res.send("Invalid Credentials")
   }
 }
@@ -46,6 +47,9 @@ const verify = (req, res) => {
   const decodedToken = jwt.verify(token, TOKEN_KEY) // decodes the token obj
   res.json(decodedToken.email) // responds with decoded value
 }
+
+
+
 
 module.exports = {
   listen,

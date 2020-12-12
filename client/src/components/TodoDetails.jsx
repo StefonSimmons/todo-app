@@ -38,9 +38,9 @@ export default function TodoDetails(props) {
           }
           <section>
             {!editForm ?
-              <button onClick={() => showEditForm(true)}>Edit</button>
+              <button className="todo-details-btn" onClick={() => showEditForm(true)}>Edit</button>
               :
-              <button onClick={() => showEditForm(false)}>Cancel</button>
+              <button className="todo-details-btn cancel" onClick={() => showEditForm(false)}>Cancel</button>
             }
           </section>
         </section>

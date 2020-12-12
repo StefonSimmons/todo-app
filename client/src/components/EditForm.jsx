@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import './EditForm.css'
+
 export default function EditForm(props) {
 
   const [fields, setFields] = useState({})
@@ -24,28 +26,29 @@ export default function EditForm(props) {
     })
   }
 
-
   return (
-    <form onSubmit={() => {
+    <form className="edit-form" onSubmit={() => {
       props.updateToDoItem(props.itemID, fields)
       props.showEditForm(false)
       props.triggerRefresh(!props.refresh)
     }
     }>
-      <input
+      <h1 className="edit-title">Edit Form</h1>
+      <h5>Task:</h5>
+      <textarea
         className="todo-details-name"
         name="name"
         value={fields.name}
         onChange={(e) => handleChange(e)}
       />
       <h5>Description:</h5>
-      <input
-        className="todo-details-description"
+      <textarea
+        className="todo-details-description edit-description"
         name="description"
         value={fields.description}
         onChange={(e) => handleChange(e)}
       />
-      <input type="submit" value="submit"/>
+      <input className="edit-btn" type="submit" value="submit" />
     </form>
   )
 }

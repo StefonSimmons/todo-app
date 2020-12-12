@@ -26,7 +26,7 @@ function App() {
     username: '',
     password: ''
   })
-  const [currentUser, setCurrUser] = useState({})
+  const [currentUser, setCurrUser] = useState({ fields: null })
   const [unauthorized, setUnauthorized] = useState(false)
   const history = useHistory()
 
@@ -153,7 +153,7 @@ function App() {
   return (
     <div>
       <Nav currentUser={currentUser} logout={logout} />
-      
+
       <Route exact path="/">
         <TodoList
           currentUser={currentUser}
