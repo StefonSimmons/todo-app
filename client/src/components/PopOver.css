@@ -1,0 +1,29 @@
+
+.popover-container{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: -55%;
+}
+/* .popover-container.active{
+  display: flex
+} */
+.popover{
+  padding: 5px;
+  background: white;
+  border: black solid 2px;
+  border-radius: 4px;
+}
+.popover > h6{
+  margin: 0;
+}
+.popover-arrow{
+  height: 8px;
+  width: 8px;
+  background: white;
+  border-left: 2px black solid;
+  border-bottom: 2px black solid;
+  transform: rotate(45deg);
+  position: relative;
+  right: -5%;
+}

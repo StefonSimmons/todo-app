@@ -10,7 +10,6 @@ export default function DeleteModal(props) {
     <section className="delete-modal-back">
       <div>
         <span onClick={() => {
-          
           props.setItemID(null)
         }}>
           <img src={closeIcon} alt="close" className="delete-modal-close" />

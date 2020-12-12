@@ -48,7 +48,7 @@ export default function EditForm(props) {
         value={fields.description}
         onChange={(e) => handleChange(e)}
       />
-      <input className="edit-btn" type="submit" value="submit" />
+      <input className="edit-btn" type="submit" value="Submit" />
     </form>
   )
 }

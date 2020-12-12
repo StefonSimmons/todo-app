@@ -44,7 +44,9 @@
 .todo-list-options{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 25%;
+  position: relative
 }
 
 .todo-list-delete{

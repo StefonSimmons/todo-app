@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import DeleteModal from './DeleteModal'
+import PopOver from './PopOver'
 
 import './TodoList.css'
 import deleteIcon from '../images/delete.png'
 
 export default function TodoList(props) {
 
-  const redirect = !props.currentUser.fields && <Redirect to='/register-login'/>
+  const redirect = !props.currentUser.fields && !localStorage.getItem('token') && <Redirect to='/register-login' />
 
   const [itemID, setItemID] = useState(null)
+  const [popOver, togglePopOver] = useState(false)
 
   const items = props.todos.map(item => {
     return (
@@ -26,6 +28,13 @@ export default function TodoList(props) {
               setItemID(item.id)
             }}
           />
+          <input
+            onMouseOver={(e) => togglePopOver(e.target.value)}
+            onMouseLeave={() => togglePopOver(false)}
+            type="checkbox"
+            value={item.id}
+          />
+          {popOver === item.id && <PopOver/>}
         </section>
       </div>
     )
@@ -35,7 +44,7 @@ export default function TodoList(props) {
     <div className="todo-list-main">
       {redirect}
       <section className="todo-list-back">
-        <h1 className="todo-list-title">Will-DO LIST</h1>
+        <h1 className="todo-list-title">Will-Do LIST</h1>
         {props.todos.length ?
           <ol>
             {items}

@@ -19,6 +19,7 @@ export default function TodoDetails(props) {
             <>
               {todoItem &&
                 <>
+                  <h5>Task:</h5>
                   <h6 className="todo-details-name">{todoItem.fields.name}</h6>
                   <h5>Description:</h5>
                   <p className="todo-details-description">{todoItem.fields.description}</p>
