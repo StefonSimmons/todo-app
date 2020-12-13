@@ -33,8 +33,6 @@ export default function TodoDetails(props) {
               myTask={myTask}
               updateToDoItem={props.updateToDoItem}
               showEditForm={showEditForm}
-              triggerRefresh={props.triggerRefresh}
-              refresh={props.refresh}
             />
           }
           <section>

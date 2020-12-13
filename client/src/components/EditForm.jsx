@@ -31,7 +31,6 @@ export default function EditForm(props) {
     <form className="edit-form" onSubmit={() => {
       props.updateToDoItem(props.itemID, fields)
       props.showEditForm(false)
-      props.triggerRefresh(!props.refresh)
     }
     }>
       <h1 className="edit-title">Edit Form</h1>

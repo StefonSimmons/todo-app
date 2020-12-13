@@ -16,14 +16,40 @@ export default function TodoList(props) {
   const [completionItemID, setCompletionItemID] = useState(null)
   const [popOver, togglePopOver] = useState(false)
 
+  const [moving, updateMove] = useState(false)
+  // const [reOrdered, setReOrdered] = useState([])
+  const [task, holdTask] = useState({})
+
+  const onDrag = (e, item) => {
+    e.preventDefault()
+    holdTask(item)
+  }
+  const onDragOver = (e, item) => {
+    e.preventDefault()
+    props.updateTodos(prevTodos => {
+      if (prevTodos.indexOf(item) < prevTodos.indexOf(task)) {
+        prevTodos.splice(prevTodos.indexOf(item), 0, task)
+        prevTodos.splice(prevTodos.lastIndexOf(task), 1)
+      } else {
+        prevTodos.splice(prevTodos.indexOf(item) + 1, 0, task)
+        prevTodos.splice(prevTodos.indexOf(task), 1)
+      }
+      return prevTodos
+    })
+    updateMove(!moving)
+  }
+
 
   const items = props.todos.map(item => {
     return (
       <div
         key={item.id}
         className="todo-list-item drag-on"
+        value={item.fields.name}
         draggable
-        
+        onDrag={(e) => onDrag(e, item)}
+        onDragOver={(e) => onDragOver(e, item)}
+      // onDrop={()=>''}
       >
         <li>{item.fields.name}</li>
         <section className="todo-list-options">
@@ -47,7 +73,7 @@ export default function TodoList(props) {
                 setFormData({
                   name: item.fields.name,
                   description: item.fields.description,
-                  priority: item.fields.priority,
+                  priority: 0,
                   email: [props.currentUser.id],
                   complete: true
                 })

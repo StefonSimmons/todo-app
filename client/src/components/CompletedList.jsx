@@ -30,7 +30,7 @@ export default function CompletedList(props) {
           <input
             id="complete"
             type="checkbox"
-            checked={completionItemID ? false : true}
+            checked={completionItemID === item.id ? false : true}
             value={item.id}
             onMouseOver={(e) => togglePopOver(e.target.value)}
             onMouseLeave={() => togglePopOver(false)}
@@ -42,7 +42,7 @@ export default function CompletedList(props) {
                 setFormData({
                   name: item.fields.name,
                   description: item.fields.description,
-                  priority: item.fields.priority,
+                  priority: props.myTasks.length + 1,
                   email: [props.currentUser.id],
                   complete: false
                 })

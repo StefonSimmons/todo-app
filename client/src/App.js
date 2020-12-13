@@ -174,6 +174,7 @@ function App() {
         <TodoList
           currentUser={currentUser}
           todos={todos}
+          updateTodos={updateTodos}
           updateToDoItem={updateToDoItem}
           deleteToDoItem={deleteToDoItem}
           gif={gif}
@@ -187,13 +188,10 @@ function App() {
           currentUser={currentUser}
           myTasks={myTasks}
           updateToDoItem={updateToDoItem}
-          triggerRefresh={triggerRefresh}
-          refresh={refresh}
         />
       </Route>
 
       <Route path="/add-todo">
-        {console.log(currentUser)}
         <AddTodo
           currentUser={currentUser}
           todos={todos}
@@ -214,6 +212,7 @@ function App() {
       <Route path="/completed-tasks">
         <CompletedList
           completed={completed}
+          myTasks={myTasks}
           currentUser={currentUser}
           deleteToDoItem={deleteToDoItem}
           updateToDoItem={updateToDoItem}
