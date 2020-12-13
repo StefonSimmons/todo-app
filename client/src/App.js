@@ -37,9 +37,10 @@ function App() {
   const getToDoData = async () => {
     const email = currentUser.fields && currentUser.fields.email
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
+
     const todoTasks = res.data.records.filter(todo => !todo.fields.complete)
     const completedTasks = res.data.records.filter(todo => todo.fields.complete)
-    console.log(todoTasks)
+
     updateTodos(todoTasks)
     updateCompleted(completedTasks)
   }
@@ -206,7 +207,16 @@ function App() {
       </Route>
 
       <Route path="/completed-tasks">
-        <CompletedList completed={completed} />
+        <CompletedList
+          completed={completed}
+          currentUser={currentUser}
+          deleteToDoItem={deleteToDoItem}
+          updateToDoItem={updateToDoItem}
+          deleteToDoItem={deleteToDoItem}
+          gif={gif}
+          setGif={setGif}
+          gifs={gifs}
+        />
       </Route>
 
     </div>

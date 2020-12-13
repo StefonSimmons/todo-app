@@ -13,7 +13,7 @@ export default function Nav({ currentUser, logout, completed }) {
           <h3>Hi, {currentUser.fields.username}!</h3>
           <Link className="nav-lnk" to='/'>My List</Link>
           <Link className="nav-lnk" to="/add-todo">New Item</Link>
-          <div class="nav-completed-container">
+          <div className="nav-completed-container">
             <Link className="nav-lnk" to="/completed-tasks">Completed</Link>
             <StaticPopOver completed={completed} />
           </div>

@@ -5,7 +5,8 @@ import DeletionModal from './DeletionModal'
 import HoverPopOver from './HoverPopOver'
 
 import './TodoList.css'
-import deleteIcon from '../images/delete.png'
+import deleteIcon from '../images/delete-blk.png'
+
 
 export default function TodoList(props) {
 
@@ -30,6 +31,7 @@ export default function TodoList(props) {
           <input
             id="complete"
             type="checkbox"
+            value={item.id}
             onMouseOver={(e) => togglePopOver(e.target.value)}
             onMouseLeave={() => togglePopOver(false)}
             onClick={(e) => {
@@ -45,7 +47,6 @@ export default function TodoList(props) {
                 })
               }
             }}
-            value={item.id}
           />
           {popOver === item.id && <HoverPopOver />}
         </section>
