@@ -44,24 +44,26 @@ export default function TodoList(props) {
           <div>
             {props.todos.map((item, idx) => {
               return (
-                <TodoItems
-                  item={item}
-                  idx={idx}
-                  setFormData={setFormData}
-                  saved={saved}
-                  updateTodos={props.updateTodos}
-                  todos={props.todos}
-                  task={task}
-                  onDrag={onDrag}
-                  draggedIDX={draggedIDX}
-                  setDragged={setDragged}
-                  setReadyToSave={setReadyToSave}
-                  setDeletionItemID={setDeletionItemID}
-                  setCompletionItemID={setCompletionItemID}
-                  currentUser={props.currentUser}
-                  gifs={props.gifs}
-                  setGif={props.setGif}
-                />
+                <React.Fragment key={idx}>
+                  <TodoItems
+                    item={item}
+                    idx={idx}
+                    setFormData={setFormData}
+                    saved={saved}
+                    updateTodos={props.updateTodos}
+                    todos={props.todos}
+                    task={task}
+                    onDrag={onDrag}
+                    draggedIDX={draggedIDX}
+                    setDragged={setDragged}
+                    setReadyToSave={setReadyToSave}
+                    setDeletionItemID={setDeletionItemID}
+                    setCompletionItemID={setCompletionItemID}
+                    currentUser={props.currentUser}
+                    gifs={props.gifs}
+                    setGif={props.setGif}
+                  />
+                </React.Fragment>
               )
             })}
           </div>
