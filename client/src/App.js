@@ -40,14 +40,16 @@ function App() {
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     updateMyTasks(res.data.records)
     const todoTasks = res.data.records.filter(todo => !todo.fields.complete)
+    const prioritizedTasks = todoTasks.sort((a, b) => b.fields.priority - a.fields.priority)
     const completedTasks = res.data.records.filter(todo => todo.fields.complete)
 
-    updateTodos(todoTasks)
+    updateTodos(prioritizedTasks)
     updateCompleted(completedTasks)
   }
 
   // POST REQUEST - Todo
   const postToDoData = async (fields) => {
+    console.log(fields)
     await axios.post(todoBaseURL, { fields }, config)
     triggerRefresh(!refresh)
   }
@@ -191,8 +193,10 @@ function App() {
       </Route>
 
       <Route path="/add-todo">
+        {console.log(currentUser)}
         <AddTodo
           currentUser={currentUser}
+          todos={todos}
           postToDoData={postToDoData}
         />
       </Route>

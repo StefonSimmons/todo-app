@@ -63,3 +63,7 @@
 .todo-list-delete:hover{
   animation: shake .70s ease-in 1.25;
 }
+
+.drag-on{
+  cursor: move;
+}

@@ -11,6 +11,7 @@ export default function EditForm(props) {
       setFields({
         name: props.myTask.fields.name,
         description: props.myTask.fields.description,
+        priority: props.myTask.fields.priority,
         email: [props.currentUser.id]
       })
     }

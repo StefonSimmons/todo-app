@@ -19,7 +19,12 @@ export default function TodoList(props) {
 
   const items = props.todos.map(item => {
     return (
-      <div key={item.id} className="todo-list-item">
+      <div
+        key={item.id}
+        className="todo-list-item drag-on"
+        draggable
+        
+      >
         <li>{item.fields.name}</li>
         <section className="todo-list-options">
           <Link to={`/items/${item.id}`} className="todo-list-link">Details</Link>
@@ -42,6 +47,7 @@ export default function TodoList(props) {
                 setFormData({
                   name: item.fields.name,
                   description: item.fields.description,
+                  priority: item.fields.priority,
                   email: [props.currentUser.id],
                   complete: true
                 })

@@ -42,6 +42,7 @@ export default function CompletedList(props) {
                 setFormData({
                   name: item.fields.name,
                   description: item.fields.description,
+                  priority: item.fields.priority,
                   email: [props.currentUser.id],
                   complete: false
                 })
