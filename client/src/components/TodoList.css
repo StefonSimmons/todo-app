@@ -45,7 +45,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 35%;
+  width: 25%;
   position: relative
 }
 
@@ -62,8 +62,4 @@
 }
 .todo-list-delete:hover{
   animation: shake .70s ease-in 1.25;
-}
-
-.todo-list-drag{
-  cursor: grab;
 }
