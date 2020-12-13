@@ -2,11 +2,15 @@ import React from 'react'
 
 import './StaticPopOver.css'
 
-export default function StaticPopOver() {
+export default function StaticPopOver({ completed }) {
   return (
     <div className='static-popover-container'>
       <div className="static-popover">
-        <h6>99<span>+</span></h6>
+        {completed.length < 99 ?
+          <h6>{completed.length}</h6>
+          :
+          <h6>99<span>+</span></h6>
+        }
       </div>
     </div>
   )

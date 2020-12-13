@@ -14,12 +14,14 @@ import TodoDetails from './components/TodoDetails'
 import AddTodo from './components/AddTodo'
 import User from './components/User'
 import Nav from './components/Nav'
+import CompletedList from './components/CompletedList'
 
 
 function App() {
 
   const [gif, setGif] = useState('')
   const [todos, updateTodos] = useState([])
+  const [completed, updateCompleted] = useState([])
   const [refresh, triggerRefresh] = useState(false)
   const [registrationCred, setRegCred] = useState({
     email: '',
@@ -35,7 +37,11 @@ function App() {
   const getToDoData = async () => {
     const email = currentUser.fields && currentUser.fields.email
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
-    updateTodos(res.data.records)
+    const todoTasks = res.data.records.filter(todo => !todo.fields.complete)
+    const completedTasks = res.data.records.filter(todo => todo.fields.complete)
+    console.log(todoTasks)
+    updateTodos(todoTasks)
+    updateCompleted(completedTasks)
   }
 
   // POST REQUEST - Todo
@@ -53,6 +59,7 @@ function App() {
   // PUT REQUEST - Todo
   const updateToDoItem = async (itemID, fields) => {
     await axios.put(`${todoBaseURL}/${itemID}`, { fields }, config)
+    triggerRefresh(!refresh)
   }
 
   // POST REQUEST - Password Digest & 
@@ -153,7 +160,11 @@ function App() {
 
   return (
     <div>
-      <Nav currentUser={currentUser} logout={logout} />
+      <Nav
+        currentUser={currentUser}
+        logout={logout}
+        completed={completed}
+      />
 
       <Route exact path="/">
         <TodoList
@@ -192,6 +203,10 @@ function App() {
           formData={registrationCred}
           setFormData={setRegCred}
         />
+      </Route>
+
+      <Route path="/completed-tasks">
+        <CompletedList completed={completed} />
       </Route>
 
     </div>

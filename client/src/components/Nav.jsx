@@ -5,7 +5,7 @@ import StaticPopOver from './StaticPopOver'
 
 import './Nav.css'
 
-export default function Nav({ currentUser, logout }) {
+export default function Nav({ currentUser, logout, completed }) {
   return (
     <nav className="nav-container">
       {currentUser.fields ?
@@ -15,7 +15,7 @@ export default function Nav({ currentUser, logout }) {
           <Link className="nav-lnk" to="/add-todo">New Item</Link>
           <div class="nav-completed-container">
             <Link className="nav-lnk" to="/completed-tasks">Completed</Link>
-            <StaticPopOver />
+            <StaticPopOver completed={completed} />
           </div>
           <Link className="nav-lnk" to="/register-login" onClick={logout}>Logout</Link>
         </>
