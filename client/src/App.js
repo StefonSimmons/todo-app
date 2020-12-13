@@ -1,25 +1,17 @@
 import { useEffect, useState } from 'react'
-import { Route, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+
+import Nav from './components/Nav'
+import Routes from './components/Routes'
 
 import { todoBaseURL, usersBaseURL, config } from './services/index'
 import { api } from './services/apiConfig'
 
-import { gifs } from './data/gifImages'
-
 import './App.css'
-
-import TodoList from './components/TodoList'
-import TodoDetails from './components/TodoDetails'
-import AddTodo from './components/AddTodo'
-import User from './components/User'
-import Nav from './components/Nav'
-import CompletedList from './components/CompletedList'
-
 
 function App() {
 
-  const [gif, setGif] = useState('')
   const [myTasks, updateMyTasks] = useState([])
   const [todos, updateTodos] = useState([])
   const [completed, updateCompleted] = useState([])
@@ -33,6 +25,9 @@ function App() {
   const [unauthorized, setUnauthorized] = useState(false)
   const history = useHistory()
 
+  // ============================================
+  //      API CALLS TO AIRTABLE AND EXPRESS
+  // ============================================
 
   // GET REQUEST - Todo
   const getToDoData = async () => {
@@ -40,9 +35,10 @@ function App() {
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     updateMyTasks(res.data.records)
     const todoTasks = res.data.records.filter(todo => !todo.fields.complete)
+    const prioritizedTasks = todoTasks.sort((a, b) => b.fields.priority - a.fields.priority)
     const completedTasks = res.data.records.filter(todo => todo.fields.complete)
 
-    updateTodos(todoTasks)
+    updateTodos(prioritizedTasks)
     updateCompleted(completedTasks)
   }
 
@@ -64,7 +60,14 @@ function App() {
     triggerRefresh(!refresh)
   }
 
-  // POST REQUEST - Password Digest & 
+  // PUT REQUEST - Todo ITEMS (ALL) Reprioritized
+  const updatePriorities = async (records) => {
+    await axios.put(todoBaseURL, { records }, config)
+    triggerRefresh(!refresh)
+  }
+
+  // ======= R E G I S T E R =========
+  // POST REQUEST - Password Digest &
   // POST REQUEST - User Registration
   const register = async () => {
     const res = await api.post('/users', { registrationCred })
@@ -83,15 +86,16 @@ function App() {
     history.push('/add-todo')
   }
 
+  // ======= L O G I N =========
   // GET REQUEST - Find One User &
   // POST REQUEST - User Login
   const login = async (loginCred) => {
 
     const email = loginCred.email
-    // gets user data from the email in airtable
     const res = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
     const user = res.data.records[0]
 
+    // verifies the password typed in is the same as the password_digest
     if (user) {
       const password_digest = user.fields.password
 
@@ -101,7 +105,6 @@ function App() {
         password_digest
       }
 
-      // verifies the password typed in is the same as the password_digest
       const resp = await api.post('/sign-in', { loginAuth })
       if (resp.data.user) {
         setUnauthorized(false)
@@ -119,6 +122,7 @@ function App() {
 
   }
 
+  // ======= V E R I F Y =========
   // GET REQUEST - Verify User (Auth) //
   const verifyUser = async () => {
     const token = localStorage.getItem('token')
@@ -132,7 +136,7 @@ function App() {
       const res = await api.get('/verify', header)
       const email = res.data
 
-      // gets user data from the email signature
+      // gets user data from the email signature / token
       const resp = await axios.get(`${usersBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
       const user = resp.data.records[0]
 
@@ -141,13 +145,12 @@ function App() {
     }
   }
 
-  // LOGOUT
+  // ======= L O G O U T =========
   const logout = () => {
     localStorage.removeItem('token')
     setCurrUser({})
     triggerRefresh(!refresh)
   }
-
 
   useEffect(() => {
     getToDoData()
@@ -168,56 +171,22 @@ function App() {
         completed={completed}
       />
 
-      <Route exact path="/">
-        <TodoList
-          currentUser={currentUser}
-          todos={todos}
-          updateToDoItem={updateToDoItem}
-          deleteToDoItem={deleteToDoItem}
-          gif={gif}
-          setGif={setGif}
-          gifs={gifs}
-        />
-      </Route>
-
-      <Route path="/items/:itemID">
-        <TodoDetails
-          currentUser={currentUser}
-          myTasks={myTasks}
-          updateToDoItem={updateToDoItem}
-          triggerRefresh={triggerRefresh}
-          refresh={refresh}
-        />
-      </Route>
-
-      <Route path="/add-todo">
-        <AddTodo
-          currentUser={currentUser}
-          postToDoData={postToDoData}
-        />
-      </Route>
-
-      <Route path="/register-login">
-        <User
-          login={login}
-          register={register}
-          unauthorized={unauthorized}
-          formData={registrationCred}
-          setFormData={setRegCred}
-        />
-      </Route>
-
-      <Route path="/completed-tasks">
-        <CompletedList
-          completed={completed}
-          currentUser={currentUser}
-          deleteToDoItem={deleteToDoItem}
-          updateToDoItem={updateToDoItem}
-          gif={gif}
-          setGif={setGif}
-          gifs={gifs}
-        />
-      </Route>
+      <Routes
+        currentUser={currentUser}
+        todos={todos}
+        updateTodos={updateTodos}
+        updateToDoItem={updateToDoItem}
+        deleteToDoItem={deleteToDoItem}
+        updatePriorities={updatePriorities}
+        myTasks={myTasks}
+        postToDoData={postToDoData}
+        login={login}
+        register={register}
+        unauthorized={unauthorized}
+        formData={registrationCred}
+        setFormData={setRegCred}
+        completed={completed}
+      />
 
     </div>
   );

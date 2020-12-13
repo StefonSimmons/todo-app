@@ -11,6 +11,7 @@ export default function EditForm(props) {
       setFields({
         name: props.myTask.fields.name,
         description: props.myTask.fields.description,
+        priority: props.myTask.fields.priority,
         email: [props.currentUser.id]
       })
     }
@@ -30,7 +31,6 @@ export default function EditForm(props) {
     <form className="edit-form" onSubmit={() => {
       props.updateToDoItem(props.itemID, fields)
       props.showEditForm(false)
-      props.triggerRefresh(!props.refresh)
     }
     }>
       <h1 className="edit-title">Edit Form</h1>

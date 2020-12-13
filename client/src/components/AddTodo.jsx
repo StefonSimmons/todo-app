@@ -10,6 +10,7 @@ export default function AddTodo(props) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
+    priority: props.todos.length + 1,
     email: [props.currentUser.id]
   })
 

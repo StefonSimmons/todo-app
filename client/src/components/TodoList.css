@@ -20,46 +20,36 @@
   font-size: 36px;
 }
 
-.todo-list-item{
+.todo-list-save{
   font-family: 'Nerko One', cursive;
   letter-spacing: 2px;
   font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 0;
-  height: 70px;
-  width: 800px;
+  margin: 15px;
+  height: 40px;
+  padding: 0 5px;
+  border-radius: 4px;
 }
-.todo-list-link{
+
+.todo-list-save:not(.save){
+  background: rgba(180, 175, 175,.5);
+  border: rgba(56, 55, 55,.5) 4px solid;
+  color: rgba(56, 55, 55,.5);
+  pointer-events: none;
+}
+
+.todo-list-save.save-me{
+  background: white;
+  border: black 4px solid;
   color: black;
-  font-family: 'Nerko One', cursive;
-}
-
-.todo-list-link:hover{
-  color: rgb(29, 28, 28);
-  transform: scale(1.05)
-}
-
-.todo-list-options{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 25%;
-  position: relative
-}
-
-.todo-list-delete{
   cursor: pointer;
+  pointer-events: auto;
+} 
+
+.todo-list-save.save-me:hover{
+  background:rgb(230, 217, 217);
+  box-shadow: 4px 5px 5px grey;
 }
 
-@keyframes shake{
-  0%{ transform: rotate(45deg)}
-  25%{ transform: rotate(0deg)}
-  50%{ transform: rotate(-45deg)}
-  75%{ transform: rotate(0deg)}
-  100%{ transform: rotate(45deg)}
-}
-.todo-list-delete:hover{
-  animation: shake .70s ease-in 1.25;
+.todo-list-save.save-me:active{
+  transform: scale(.94);
 }
