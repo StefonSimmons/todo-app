@@ -84,6 +84,16 @@
   .todo-item{
     width: 90vw;
   }
+}
 
-
+@media(max-width: 675px){
+  .todo-item-link{
+    display: none;
+  }
+  .todo-item-delete{
+    display: none;
+  }
+  .todo-item-options{
+    width: 100px;
+  }
 }

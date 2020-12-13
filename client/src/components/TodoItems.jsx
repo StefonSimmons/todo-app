@@ -5,7 +5,7 @@ import HoverPopOver from './HoverPopOver'
 import { onDragOver } from '../utilities/priorititize'
 
 import deleteIcon from '../images/delete-blk.png'
-
+import moreOptions from '../images/more-options.png'
 import './TodoItems.css'
 
 export default function TodoItems({
@@ -38,6 +38,7 @@ export default function TodoItems({
         <h4>{item.fields.name}</h4>
       </section>
       <section className="todo-item-options">
+        <img src={moreOptions} alt="more"/>
         <Link to={`/items/${item.id}`} className="todo-item-link">Details</Link>
         <img
           src={deleteIcon} alt="delete"
