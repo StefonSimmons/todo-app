@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import eyeSee from '../images/eye-see.png'
+import noSee from '../images/no-see.png'
 
 import "./Register.css"
 
 export default function Register({ register, formData, setFormData }) {
+
+  const [visible, showPW] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -41,14 +46,21 @@ export default function Register({ register, formData, setFormData }) {
         onChange={(e) => handleChange(e)}
         placeholder="username"
       />
-      <input
-        className="register-input password"
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={(e) => handleChange(e)}
-        placeholder="password"
-      />
+      <section className="register-pw-wrapper">
+        <input
+          className="register-input password"
+          type={`${visible ? "text" : "password"}`}
+          name="password"
+          value={formData.password}
+          onChange={(e) => handleChange(e)}
+          placeholder="password"
+        />
+        {!visible ?
+          <span onClick={() => showPW(true)}><img src={eyeSee} alt="password seen" /></span>
+          :
+          <span onClick={() => showPW(false)}><img src={noSee} alt="password hidden" /></span>
+        }
+      </section>
       <input className="register-btn" type="submit" value="Register" />
     </form>
   )

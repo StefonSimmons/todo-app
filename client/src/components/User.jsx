@@ -6,7 +6,7 @@ import './User.css'
 
 export default function User({ formData, login, register, setFormData, unauthorized }) {
 
-  const [tab, updateTab] = useState(true)
+  const [tab, updateTab] = useState(false)
 
   return (
     <div className="register-login-main">

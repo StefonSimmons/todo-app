@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 export default function Login({ login, unauthorized }) {
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: 'test@test.com',
+    password: 't3$71In6'
   })
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -22,7 +22,7 @@ export default function Login({ login, unauthorized }) {
       password: ''
     })
   }
-
+  console.log(console.log(process.env))
   return (
 
     <form className="register-form" onSubmit={(e) => handleSubmit(e)}>

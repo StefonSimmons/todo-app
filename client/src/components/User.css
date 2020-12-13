@@ -36,3 +36,23 @@
   transform: scale(.94);
   background-color: rgb(212, 201, 201);
 }
+
+.register-pw-wrapper{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.register-pw-wrapper > span{
+  position: absolute;
+  right: -18%;
+  cursor: pointer;
+}
+.register-pw-wrapper > span:hover{
+  transform: scale(.94);
+}
+.register-pw-wrapper > span:active{
+  transform: scale(.94);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, .1);
+}
+
