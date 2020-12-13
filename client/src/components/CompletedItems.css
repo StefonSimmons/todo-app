@@ -1,0 +1,43 @@
+.completed-item{
+  font-family: 'Nerko One', cursive;
+  color:white;
+  letter-spacing: 2px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  height: 70px;
+  width: 800px;
+}
+.completed-item-options{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25%;
+  position: relative
+}
+
+.completed-item-link{
+  color: white;
+  font-family: 'Nerko One', cursive;
+}
+.completed-item-link:hover{
+  color: rgb(230, 217, 217);
+  transform: scale(1.05)
+}
+
+.completed-item-delete{
+  cursor: pointer;
+}
+
+@keyframes shake{
+  0%{ transform: rotate(45deg)}
+  25%{ transform: rotate(0deg)}
+  50%{ transform: rotate(-45deg)}
+  75%{ transform: rotate(0deg)}
+  100%{ transform: rotate(45deg)}
+}
+.completed-item-delete:hover{
+  animation: shake .70s ease-in 1.25;
+}
