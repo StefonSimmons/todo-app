@@ -27,9 +27,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 15px;
   height: 70px;
   width: 800px;
+  border-radius: 4px;
+  cursor: move;
+}
+
+.todo-list-item:hover{
+  box-shadow: 0px 0px 5px black inset;  
+}
+.todo-list-item:active{
+  box-shadow: none;
+}
+
+.todo-list-idx-wrapper{
+  display: flex;
+  align-items: center;
+}
+.todo-list-idx-wrapper >span{
+  margin-right: 5px;
 }
 .todo-list-link{
   color: black;
@@ -64,6 +81,13 @@
   animation: shake .70s ease-in 1.25;
 }
 
-.drag-on{
-  cursor: move;
+.dragged-item{
+  box-shadow: 0px 0px 5px black inset;  
+  background: rgba(0,0,0,.2);
+}
+
+#complete{
+  cursor: pointer;
+  width: 15px;
+  height: 15px
 }

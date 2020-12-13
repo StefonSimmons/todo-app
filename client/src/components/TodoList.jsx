@@ -17,15 +17,17 @@ export default function TodoList(props) {
   const [popOver, togglePopOver] = useState(false)
 
   const [moving, updateMove] = useState(false)
-  // const [reOrdered, setReOrdered] = useState([])
   const [task, holdTask] = useState({})
+  const [draggedIDX, setDragged] = useState(false)
 
   const onDrag = (e, item) => {
     e.preventDefault()
     holdTask(item)
   }
+
   const onDragOver = (e, item) => {
     e.preventDefault()
+
     props.updateTodos(prevTodos => {
       if (prevTodos.indexOf(item) < prevTodos.indexOf(task)) {
         prevTodos.splice(prevTodos.indexOf(item), 0, task)
@@ -37,21 +39,41 @@ export default function TodoList(props) {
       return prevTodos
     })
     updateMove(!moving)
+    setDragged(props.todos.indexOf(task))
   }
 
+  const setPriority = () => {
+    const priorities = props.todos.map((item, idx, arr) => {
+      const record = {
+        id: item.id,
+        fields: {
+          name: item.fields.name,
+          description: item.fields.description,
+          email: [item.fields.email[0]],
+          complete: false,
+          priority: arr.length - idx
+        }
+      }
+      return record
+    })
+    props.updatePriorities(priorities)
+  }
 
-  const items = props.todos.map(item => {
+  const items = props.todos.map((item, idx) => {
     return (
       <div
         key={item.id}
-        className="todo-list-item drag-on"
+        className={`todo-list-item ${draggedIDX === idx && 'dragged-item'}`}
         value={item.fields.name}
         draggable
         onDrag={(e) => onDrag(e, item)}
         onDragOver={(e) => onDragOver(e, item)}
-      // onDrop={()=>''}
+        onDrop={() => setTimeout(() => setDragged(false), 1000)}
       >
-        <li>{item.fields.name}</li>
+        <section className="todo-list-idx-wrapper">
+          <span>{`${idx + 1}.`}</span>
+          <h4>{item.fields.name}</h4>
+        </section>
         <section className="todo-list-options">
           <Link to={`/items/${item.id}`} className="todo-list-link">Details</Link>
           <img
@@ -91,10 +113,13 @@ export default function TodoList(props) {
       {redirect}
       <section className="todo-list-back">
         <h1 className="todo-list-title">Will-Do LIST</h1>
+        <button onClick={() => {
+          setPriority()
+        }}>SAVE NEW ORDER</button>
         {props.todos.length ?
-          <ol>
+          <div>
             {items}
-          </ol>
+          </div>
           :
           <>
             <h4>Nothing Here Yet</h4>

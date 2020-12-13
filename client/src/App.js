@@ -33,6 +33,8 @@ function App() {
   const [unauthorized, setUnauthorized] = useState(false)
   const history = useHistory()
 
+  // const reOrdered = []
+
 
   // GET REQUEST - Todo
   const getToDoData = async () => {
@@ -63,6 +65,12 @@ function App() {
   // PUT REQUEST - Todo
   const updateToDoItem = async (itemID, fields) => {
     await axios.put(`${todoBaseURL}/${itemID}`, { fields }, config)
+    triggerRefresh(!refresh)
+  }
+
+  // PUT REQUEST - Todo Item Reprioritized
+  const updatePriorities = async (records) => {
+    await axios.put(todoBaseURL, { records }, config)
     triggerRefresh(!refresh)
   }
 
@@ -180,6 +188,7 @@ function App() {
           gif={gif}
           setGif={setGif}
           gifs={gifs}
+          updatePriorities={updatePriorities}
         />
       </Route>
 
