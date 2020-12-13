@@ -7,10 +7,10 @@ export default function EditForm(props) {
   const [fields, setFields] = useState({})
 
   useEffect(() => {
-    if (props.todoItem) {
+    if (props.myTask) {
       setFields({
-        name: props.todoItem.fields.name,
-        description: props.todoItem.fields.description,
+        name: props.myTask.fields.name,
+        description: props.myTask.fields.description,
         email: [props.currentUser.id]
       })
     }

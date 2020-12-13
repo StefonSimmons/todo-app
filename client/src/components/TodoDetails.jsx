@@ -9,7 +9,7 @@ export default function TodoDetails(props) {
   const { itemID } = useParams()
 
   const [editForm, showEditForm] = useState(false)
-  const todoItem = props.todos.find(item => item.id === itemID)
+  const myTask = props.myTasks.find(item => item.id === itemID)
 
   return (
     <div className="todo-details-main">
@@ -17,12 +17,12 @@ export default function TodoDetails(props) {
         <section className="todo-details">
           {!editForm ?
             <>
-              {todoItem &&
+              {myTask &&
                 <>
                   <h5>Task:</h5>
-                  <h6 className="todo-details-name">{todoItem.fields.name}</h6>
+                  <h6 className="todo-details-name">{myTask.fields.name}</h6>
                   <h5>Description:</h5>
-                  <p className="todo-details-description">{todoItem.fields.description}</p>
+                  <p className="todo-details-description">{myTask.fields.description}</p>
                 </>
               }
             </>
@@ -30,7 +30,7 @@ export default function TodoDetails(props) {
             <EditForm
               currentUser={props.currentUser}
               itemID={itemID}
-              todoItem={todoItem}
+              myTask={myTask}
               updateToDoItem={props.updateToDoItem}
               showEditForm={showEditForm}
               triggerRefresh={props.triggerRefresh}

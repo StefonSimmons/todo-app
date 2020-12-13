@@ -24,7 +24,10 @@
   font-size: 36px;
   color: white;
 }
-
+.completed-link{
+  color: white;
+  font-family: 'Nerko One', cursive;
+}
 .completed-item{
   font-family: 'Nerko One', cursive;
   color:white;
@@ -39,4 +42,15 @@
 }
 .completed-delete{
   cursor: pointer;
+}
+
+@keyframes shake{
+  0%{ transform: rotate(45deg)}
+  25%{ transform: rotate(0deg)}
+  50%{ transform: rotate(-45deg)}
+  75%{ transform: rotate(0deg)}
+  100%{ transform: rotate(45deg)}
+}
+.completed-delete:hover{
+  animation: shake .70s ease-in 1.25;
 }

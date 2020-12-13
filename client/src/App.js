@@ -20,6 +20,7 @@ import CompletedList from './components/CompletedList'
 function App() {
 
   const [gif, setGif] = useState('')
+  const [myTasks, updateMyTasks] = useState([])
   const [todos, updateTodos] = useState([])
   const [completed, updateCompleted] = useState([])
   const [refresh, triggerRefresh] = useState(false)
@@ -37,7 +38,7 @@ function App() {
   const getToDoData = async () => {
     const email = currentUser.fields && currentUser.fields.email
     const res = await axios.get(`${todoBaseURL}?filterByFormula=FIND(%22${email}%22%2C+%7Bemail%7D)`, config)
-
+    updateMyTasks(res.data.records)
     const todoTasks = res.data.records.filter(todo => !todo.fields.complete)
     const completedTasks = res.data.records.filter(todo => todo.fields.complete)
 
@@ -182,7 +183,7 @@ function App() {
       <Route path="/items/:itemID">
         <TodoDetails
           currentUser={currentUser}
-          todos={todos}
+          myTasks={myTasks}
           updateToDoItem={updateToDoItem}
           triggerRefresh={triggerRefresh}
           refresh={refresh}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import DeletionModal from './DeletionModal'
 import CompletionModal from './CompletionModal'
 import HoverPopOver from './HoverPopOver'
@@ -19,7 +21,7 @@ export default function CompletedList(props) {
       <div key={item.id} className="completed-item">
         <li>{item.fields.name}</li>
         <section className="completed-options">
-
+          <Link to={`/items/${item.id}`} className="completed-link">Details</Link>
           <img
             src={deleteIcon} alt="delete"
             className="completed-delete"
