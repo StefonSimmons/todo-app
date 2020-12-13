@@ -1,0 +1,81 @@
+.todo-item{
+  font-family: 'Nerko One', cursive;
+  letter-spacing: 2px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  height: 70px;
+  width: 800px;
+  border-radius: 4px;
+  cursor: move;
+}
+
+.todo-item:hover{
+  box-shadow: 0px 0px 5px black inset; 
+}
+.todo-item:active{
+  box-shadow: none;
+}
+@keyframes saved{
+  0%{background: rgba(84, 174, 146,0); box-shadow: 0px 0px 5px black inset;}
+  20%{background: rgba(84, 174, 146,.2); box-shadow: 0px 0px 5px black inset;}
+  40%{background: rgba(84, 174, 146,.5); box-shadow: 0px 0px 5px black inset;}
+  60%{background: rgba(84, 174, 146,0); box-shadow: 0px 0px 5px black inset;}
+  80%{background: rgba(84, 174, 146,.2); box-shadow: 0px 0px 5px black inset;}
+  100%{background: rgba(84, 174, 146,.5); box-shadow: 0px 0px 5px black inset;}
+}
+.todo-item.saved{
+  animation: saved .5s ease
+}
+
+.dragged-item{
+  box-shadow: 0px 0px 5px black inset;  
+  background: rgba(0,0,0,.2);
+}
+
+.todo-item-idx-wrapper{
+  display: flex;
+  align-items: center;
+}
+.todo-item-idx-wrapper >span{
+  margin-right: 5px;
+}
+
+.todo-item-options{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25%;
+  position: relative
+}
+
+.todo-item-link{
+  color: black;
+  font-family: 'Nerko One', cursive;
+}
+
+.todo-item-link:hover{
+  color: rgb(29, 28, 28);
+  transform: scale(1.05)
+}
+
+.todo-item-delete{
+  cursor: pointer;
+}
+
+@keyframes shake{
+  0%{ transform: rotate(45deg)}
+  25%{ transform: rotate(0deg)}
+  50%{ transform: rotate(-45deg)}
+  75%{ transform: rotate(0deg)}
+  100%{ transform: rotate(45deg)}
+}
+.todo-item-delete:hover{
+  animation: shake .70s ease-in 1.25;
+}
+
+#complete{
+  cursor: pointer;
+}

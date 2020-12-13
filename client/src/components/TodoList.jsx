@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import CompletionModal from './CompletionModal'
 import DeletionModal from './DeletionModal'
-import HoverPopOver from './HoverPopOver'
+import TodoItems from './TodoItems'
 
 import './TodoList.css'
-import deleteIcon from '../images/delete-blk.png'
 
 export default function TodoList(props) {
 
@@ -14,7 +13,6 @@ export default function TodoList(props) {
   const [formData, setFormData] = useState()
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
-  const [popOver, togglePopOver] = useState(false)
 
   const [moving, updateMove] = useState(false)
   const [task, holdTask] = useState({})
@@ -61,61 +59,6 @@ export default function TodoList(props) {
     props.updatePriorities(priorities)
   }
 
-  const items = props.todos.map((item, idx) => {
-    return (
-      <div
-        key={item.id}
-        className={`todo-list-item 
-        ${draggedIDX === idx && 'dragged-item'}
-        ${saved && 'saved'}
-        `}
-        value={item.fields.name}
-        draggable
-        onDrag={(e) => onDrag(e, item)}
-        onDragOver={(e) => onDragOver(e, item)}
-        onDrop={() => {
-          setTimeout(() => setDragged(false), 1000)
-          setTimeout(() => setReadyToSave(true), 500)
-        }}
-      >
-        <section className="todo-list-idx-wrapper">
-          <span>{`${idx + 1}.`}</span>
-          <h4>{item.fields.name}</h4>
-        </section>
-        <section className="todo-list-options">
-          <Link to={`/items/${item.id}`} className="todo-list-link">Details</Link>
-          <img
-            src={deleteIcon} alt="delete"
-            className="todo-list-delete"
-            onClick={() => setDeletionItemID(item.id)}
-          />
-          <input
-            id="complete"
-            type="checkbox"
-            value={item.id}
-            onMouseOver={(e) => togglePopOver(e.target.value)}
-            onMouseLeave={() => togglePopOver(false)}
-            onClick={(e) => {
-              if (e.target.checked) {
-                const randoIdx = Math.floor(Math.random() * props.gifs.length)
-                props.setGif(props.gifs[randoIdx])
-                setCompletionItemID(item.id)
-                setFormData({
-                  name: item.fields.name,
-                  description: item.fields.description,
-                  priority: 0,
-                  email: [props.currentUser.id],
-                  complete: true
-                })
-              }
-            }}
-          />
-          {popOver === item.id && <HoverPopOver />}
-        </section>
-      </div>
-    )
-  })
-
   return (
     <div className="todo-list-main">
       {redirect}
@@ -131,7 +74,26 @@ export default function TodoList(props) {
         </button>
         {props.todos.length ?
           <div>
-            {items}
+            {props.todos.map((item, idx) => {
+              return (
+                <TodoItems
+                  item={item}
+                  idx={idx}
+                  setFormData={setFormData}
+                  saved={saved}
+                  onDrag={onDrag}
+                  onDragOver={onDragOver}
+                  draggedIDX={draggedIDX}
+                  setDragged={setDragged}
+                  setReadyToSave={setReadyToSave}
+                  setDeletionItemID={setDeletionItemID}
+                  setCompletionItemID={setCompletionItemID}
+                  currentUser={props.currentUser}
+                  gifs={props.gifs}
+                  setGif={props.setGif}
+                />
+              )
+            })}
           </div>
           :
           <>
