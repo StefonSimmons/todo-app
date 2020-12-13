@@ -30,11 +30,12 @@ export default function CompletedList(props) {
           <input
             id="complete"
             type="checkbox"
+            checked={completionItemID ? false : true}
             value={item.id}
             onMouseOver={(e) => togglePopOver(e.target.value)}
             onMouseLeave={() => togglePopOver(false)}
             onClick={(e) => {
-              if (e.target.checked) {
+              if (!e.target.checked) {
                 const randoIdx = Math.floor(Math.random() * props.gifs.length)
                 props.setGif(props.gifs[randoIdx])
                 setCompletionItemID(item.id)
