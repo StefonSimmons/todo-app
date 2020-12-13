@@ -88,6 +88,39 @@
 
 #complete{
   cursor: pointer;
-  width: 15px;
-  height: 15px
+}
+
+
+.todo-list-save{
+  font-family: 'Nerko One', cursive;
+  letter-spacing: 2px;
+  font-size: 24px;
+  margin: 15px;
+  height: 40px;
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+.todo-list-save:not(.save){
+  background: rgba(180, 175, 175,.5);
+  border: rgba(56, 55, 55,.5) 4px solid;
+  color: rgba(56, 55, 55,.5);
+  pointer-events: none;
+}
+
+.todo-list-save.save-me{
+  background: white;
+  border: black 4px solid;
+  color: black;
+  cursor: pointer;
+  pointer-events: auto;
+} 
+
+.todo-list-save.save-me:hover{
+  background:rgb(230, 217, 217);
+  box-shadow: 4px 5px 5px grey;
+}
+
+.todo-list-save.save-me:active{
+  transform: scale(.94);
 }

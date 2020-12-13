@@ -19,6 +19,7 @@ export default function TodoList(props) {
   const [moving, updateMove] = useState(false)
   const [task, holdTask] = useState({})
   const [draggedIDX, setDragged] = useState(false)
+  const [readyToSave, setReady] = useState(false)
 
   const onDrag = (e, item) => {
     e.preventDefault()
@@ -68,7 +69,10 @@ export default function TodoList(props) {
         draggable
         onDrag={(e) => onDrag(e, item)}
         onDragOver={(e) => onDragOver(e, item)}
-        onDrop={() => setTimeout(() => setDragged(false), 1000)}
+        onDrop={() => {
+          setTimeout(() => setDragged(false), 1000)
+          setTimeout(() => setReady(true), 500)
+        }}
       >
         <section className="todo-list-idx-wrapper">
           <span>{`${idx + 1}.`}</span>
@@ -113,9 +117,12 @@ export default function TodoList(props) {
       {redirect}
       <section className="todo-list-back">
         <h1 className="todo-list-title">Will-Do LIST</h1>
-        <button onClick={() => {
-          setPriority()
-        }}>SAVE NEW ORDER</button>
+        <button className={`todo-list-save ${readyToSave && 'save-me'} `}
+          onClick={() => {
+            setPriority()
+            setReady(false)
+          }}>SAVE NEW ORDER
+        </button>
         {props.todos.length ?
           <div>
             {items}
