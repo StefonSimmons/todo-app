@@ -213,7 +213,6 @@ function App() {
           currentUser={currentUser}
           deleteToDoItem={deleteToDoItem}
           updateToDoItem={updateToDoItem}
-          deleteToDoItem={deleteToDoItem}
           gif={gif}
           setGif={setGif}
           gifs={gifs}
