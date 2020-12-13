@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import CompletionModal from './CompletionModal'
 import DeletionModal from './DeletionModal'
-import PopOver from './PopOver'
+import HoverPopOver from './HoverPopOver'
 
 import './TodoList.css'
 import deleteIcon from '../images/delete.png'
@@ -47,7 +47,7 @@ export default function TodoList(props) {
             }}
             value={item.id}
           />
-          {popOver === item.id && <PopOver />}
+          {popOver === item.id && <HoverPopOver />}
         </section>
       </div>
     )
