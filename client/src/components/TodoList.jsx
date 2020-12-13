@@ -19,7 +19,8 @@ export default function TodoList(props) {
   const [moving, updateMove] = useState(false)
   const [task, holdTask] = useState({})
   const [draggedIDX, setDragged] = useState(false)
-  const [readyToSave, setReady] = useState(false)
+  const [readyToSave, setReadyToSave] = useState(false)
+  const [saved, setSaved] = useState(false)
 
   const onDrag = (e, item) => {
     e.preventDefault()
@@ -64,14 +65,17 @@ export default function TodoList(props) {
     return (
       <div
         key={item.id}
-        className={`todo-list-item ${draggedIDX === idx && 'dragged-item'}`}
+        className={`todo-list-item 
+        ${draggedIDX === idx && 'dragged-item'}
+        ${saved && 'saved'}
+        `}
         value={item.fields.name}
         draggable
         onDrag={(e) => onDrag(e, item)}
         onDragOver={(e) => onDragOver(e, item)}
         onDrop={() => {
           setTimeout(() => setDragged(false), 1000)
-          setTimeout(() => setReady(true), 500)
+          setTimeout(() => setReadyToSave(true), 500)
         }}
       >
         <section className="todo-list-idx-wrapper">
@@ -120,7 +124,9 @@ export default function TodoList(props) {
         <button className={`todo-list-save ${readyToSave && 'save-me'} `}
           onClick={() => {
             setPriority()
-            setReady(false)
+            setReadyToSave(false)
+            setSaved(true)
+            setTimeout(() => setSaved(false), 1000)
           }}>SAVE NEW ORDER
         </button>
         {props.todos.length ?

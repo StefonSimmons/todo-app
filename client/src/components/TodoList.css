@@ -35,10 +35,26 @@
 }
 
 .todo-list-item:hover{
-  box-shadow: 0px 0px 5px black inset;  
+  box-shadow: 0px 0px 5px black inset; 
 }
 .todo-list-item:active{
   box-shadow: none;
+}
+@keyframes saved{
+  0%{background: rgba(84, 174, 146,0); box-shadow: 0px 0px 5px black inset;}
+  20%{background: rgba(84, 174, 146,.2); box-shadow: 0px 0px 5px black inset;}
+  40%{background: rgba(84, 174, 146,.5); box-shadow: 0px 0px 5px black inset;}
+  60%{background: rgba(84, 174, 146,0); box-shadow: 0px 0px 5px black inset;}
+  80%{background: rgba(84, 174, 146,.2); box-shadow: 0px 0px 5px black inset;}
+  100%{background: rgba(84, 174, 146,.5); box-shadow: 0px 0px 5px black inset;}
+}
+.todo-list-item.saved{
+  animation: saved .5s ease
+}
+
+.dragged-item{
+  box-shadow: 0px 0px 5px black inset;  
+  background: rgba(0,0,0,.2);
 }
 
 .todo-list-idx-wrapper{
@@ -81,10 +97,6 @@
   animation: shake .70s ease-in 1.25;
 }
 
-.dragged-item{
-  box-shadow: 0px 0px 5px black inset;  
-  background: rgba(0,0,0,.2);
-}
 
 #complete{
   cursor: pointer;
