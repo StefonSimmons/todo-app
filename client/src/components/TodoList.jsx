@@ -6,7 +6,7 @@ import HoverPopOver from './HoverPopOver'
 
 import './TodoList.css'
 import deleteIcon from '../images/delete-blk.png'
-
+import dragIcon from '../images/drag.png'
 
 export default function TodoList(props) {
 
@@ -22,6 +22,7 @@ export default function TodoList(props) {
       <div key={item.id} className="todo-list-item">
         <li>{item.fields.name}</li>
         <section className="todo-list-options">
+          <img src={dragIcon} alt="drag" className="todo-list-drag" />
           <Link to={`/items/${item.id}`} className="todo-list-link">Details</Link>
           <img
             src={deleteIcon} alt="delete"
