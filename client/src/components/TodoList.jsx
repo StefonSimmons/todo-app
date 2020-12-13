@@ -4,6 +4,8 @@ import CompletionModal from './CompletionModal'
 import DeletionModal from './DeletionModal'
 import TodoItems from './TodoItems'
 
+import { setPriority } from '../utilities/priorititize'
+
 import './TodoList.css'
 
 export default function TodoList(props) {
@@ -14,49 +16,15 @@ export default function TodoList(props) {
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
 
-  const [moving, updateMove] = useState(false)
-  const [task, holdTask] = useState({})
   const [draggedIDX, setDragged] = useState(false)
   const [readyToSave, setReadyToSave] = useState(false)
   const [saved, setSaved] = useState(false)
 
+  const [task, holdTask] = useState({})
+
   const onDrag = (e, item) => {
     e.preventDefault()
     holdTask(item)
-  }
-
-  const onDragOver = (e, item) => {
-    e.preventDefault()
-
-    props.updateTodos(prevTodos => {
-      if (prevTodos.indexOf(item) < prevTodos.indexOf(task)) {
-        prevTodos.splice(prevTodos.indexOf(item), 0, task)
-        prevTodos.splice(prevTodos.lastIndexOf(task), 1)
-      } else {
-        prevTodos.splice(prevTodos.indexOf(item) + 1, 0, task)
-        prevTodos.splice(prevTodos.indexOf(task), 1)
-      }
-      return prevTodos
-    })
-    updateMove(!moving)
-    setDragged(props.todos.indexOf(task))
-  }
-
-  const setPriority = () => {
-    const priorities = props.todos.map((item, idx, arr) => {
-      const record = {
-        id: item.id,
-        fields: {
-          name: item.fields.name,
-          description: item.fields.description,
-          email: [item.fields.email[0]],
-          complete: false,
-          priority: arr.length - idx
-        }
-      }
-      return record
-    })
-    props.updatePriorities(priorities)
   }
 
   return (
@@ -66,7 +34,7 @@ export default function TodoList(props) {
         <h1 className="todo-list-title">Will-Do LIST</h1>
         <button className={`todo-list-save ${readyToSave && 'save-me'} `}
           onClick={() => {
-            setPriority()
+            setPriority(props.todos, props.updatePriorities)
             setReadyToSave(false)
             setSaved(true)
             setTimeout(() => setSaved(false), 1000)
@@ -81,8 +49,10 @@ export default function TodoList(props) {
                   idx={idx}
                   setFormData={setFormData}
                   saved={saved}
+                  updateTodos={props.updateTodos}
+                  todos={props.todos}
+                  task={task}
                   onDrag={onDrag}
-                  onDragOver={onDragOver}
                   draggedIDX={draggedIDX}
                   setDragged={setDragged}
                   setReadyToSave={setReadyToSave}

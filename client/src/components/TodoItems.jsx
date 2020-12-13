@@ -2,15 +2,18 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import HoverPopOver from './HoverPopOver'
 
+import { onDragOver } from '../utilities/priorititize'
+
 import deleteIcon from '../images/delete-blk.png'
 
 import './TodoItems.css'
 
 export default function TodoItems({
-  item, idx, setFormData, saved, draggedIDX, onDrag, onDragOver, setDragged, setReadyToSave,
+  item, idx, setFormData, saved, draggedIDX, setDragged, onDrag, task, updateTodos, todos, setReadyToSave,
   setDeletionItemID, setCompletionItemID, gifs, setGif, currentUser
 }) {
 
+  const [moving, updateMove] = useState(false)
   const [popOver, togglePopOver] = useState(false)
 
 
@@ -24,7 +27,7 @@ export default function TodoItems({
       value={item.fields.name}
       draggable
       onDrag={(e) => onDrag(e, item)}
-      onDragOver={(e) => onDragOver(e, item)}
+      onDragOver={(e) => onDragOver(e, item, updateTodos, todos, task, updateMove, moving, setDragged)}
       onDrop={() => {
         setTimeout(() => setDragged(false), 1000)
         setTimeout(() => setReadyToSave(true), 500)
