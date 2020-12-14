@@ -5,7 +5,7 @@ import HoverPopOver from './HoverPopOver'
 import { onDragOver } from '../utilities/priorititize'
 
 import deleteIcon from '../images/delete-blk.png'
-import moreOptions from '../images/more-options.png'
+import moreOptions from '../images/more-options-blk.png'
 import './TodoItems.css'
 
 export default function TodoItems({

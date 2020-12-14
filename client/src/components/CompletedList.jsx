@@ -11,27 +11,30 @@ export default function CompletedList(props) {
   const [formData, setFormData] = useState()
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
-
+ 
   return (
     <div className="completed-main">
       <div className="completed-back">
         <h1 className="completed-title">Completed LIST</h1>
-        <ol>
-          {props.completed.map((item) => {
+        <div>
+          {props.completed.map((item, idx) => {
             return (
-              <CompletedItems
-                item={item}
-                setFormData={setFormData}
-                setDeletionItemID={setDeletionItemID}
-                completionItemID={completionItemID}
-                setCompletionItemID={setCompletionItemID}
-                currentUser={props.currentUser}
-                gifs={props.gifs}
-                setGif={props.setGif}
-              />
+              <React.Fragment key={idx}>
+                <CompletedItems
+                  idx={idx}
+                  item={item}
+                  setFormData={setFormData}
+                  setDeletionItemID={setDeletionItemID}
+                  completionItemID={completionItemID}
+                  setCompletionItemID={setCompletionItemID}
+                  currentUser={props.currentUser}
+                  gifs={props.gifs}
+                  setGif={props.setGif}
+                />
+              </React.Fragment>
             )
           })}
-        </ol>
+        </div>
       </div>
 
       { completionItemID &&

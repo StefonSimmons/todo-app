@@ -6,18 +6,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 15px 30px 15px 15px;
   height: 70px;
   width: 800px;
+}
+.completed-item-idx-wrapper{
+  display: flex;
+  align-items: center;
+}
+.completed-item-idx-wrapper >span{
+  margin-right: 10px;
 }
 .completed-item-options{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 25%;
+  width: 200px;
   position: relative
 }
-
+.completed-item-more{
+  display: none;
+}
 .completed-item-link{
   color: white;
   font-family: 'Nerko One', cursive;
@@ -40,4 +49,37 @@
 }
 .completed-item-delete:hover{
   animation: shake .70s ease-in 1.25;
+}
+
+
+
+@media(max-width: 845px){
+  .completed-item{
+    width: 90vw;
+  }
+}
+
+@media(max-width: 675px){
+  .completed-item-link{
+    display: none;
+  }
+  .completed-item-delete{
+    display: none;
+  }
+  .completed-item-options{
+    width: 150px;
+  }
+  .completed-item-more{
+    display: block;
+    cursor: pointer;
+  }
+}
+
+@media(max-width:475px){
+  .completed-item-options{
+    justify-content: flex-end;
+  }
+  .completed-item-more{
+    margin: 0 auto;
+  }
 }
