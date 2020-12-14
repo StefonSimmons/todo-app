@@ -61,6 +61,9 @@
   .mobile-menu-lnk.completed{
     display: block
   }
+  .mobile-menu-back{
+    height: 100%;
+  }
 }
 @media(max-width: 675px){
   .mobile-menu-lnk.new{

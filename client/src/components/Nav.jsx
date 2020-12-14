@@ -29,7 +29,7 @@ export default function Nav({ currentUser, logout, completed, showMobileMenu, mo
             />
           </>
           :
-          <Link className="nav-lnk" to="/register-login">Register / Login</Link>
+          <Link className="nav-lnk register-login" to="/register-login">Register / Login</Link>
         }
       </nav>
     </>
