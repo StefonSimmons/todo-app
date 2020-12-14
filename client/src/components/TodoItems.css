@@ -47,8 +47,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 25%;
+  width: 200px;
   position: relative
+}
+
+.todo-item-more{
+  display: none;
 }
 
 .todo-item-link{
@@ -78,4 +82,35 @@
 
 #complete{
   cursor: pointer;
+}
+
+@media(max-width: 845px){
+  .todo-item{
+    width: 90vw;
+  }
+}
+
+@media(max-width: 675px){
+  .todo-item-link{
+    display: none;
+  }
+  .todo-item-delete{
+    display: none;
+  }
+  .todo-item-options{
+    width: 150px;
+  }
+  .todo-item-more{
+    display: block;
+    cursor: pointer;
+  }
+}
+
+@media(max-width:475px){
+  .todo-item-options{
+    justify-content: flex-end;
+  }
+  .todo-item-more{
+    margin: 0 auto;
+  }
 }

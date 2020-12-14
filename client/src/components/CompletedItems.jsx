@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import HoverPopOver from './HoverPopOver'
 
 import deleteIcon from '../images/delete-wht.png'
+import moreOptions from '../images/more-options-wht.png'
 
 import './CompletedItems.css'
 
 export default function CompletedItems({
-  item, setFormData, setCompletionItemID, completionItemID, setDeletionItemID,
+  item, setFormData, setCompletionItemID, completionItemID, setDeletionItemID, showMoreOptions, idx,
   gifs, setGif, currentUser
 }) {
 
@@ -16,8 +17,15 @@ export default function CompletedItems({
 
   return (
     <div key={item.id} className="completed-item">
-      <li>{item.fields.name}</li>
+      <section className="completed-item-idx-wrapper">
+        <span>{`${idx + 1}.`}</span>
+        <h4>{item.fields.name}</h4>
+      </section>
       <section className="completed-item-options">
+        <img src={moreOptions} alt="more"
+          className="completed-item-more"
+          onClick={() => showMoreOptions(item.id)}
+        />
         <Link to={`/items/${item.id}`} className="completed-item-link">Details</Link>
         <img
           src={deleteIcon} alt="delete"
@@ -27,7 +35,7 @@ export default function CompletedItems({
         <input
           id="complete"
           type="checkbox"
-          checked={completionItemID === item.id ? false : true}
+          defaultChecked={completionItemID === item.id ? false : true}
           value={item.id}
           onMouseOver={(e) => togglePopOver(e.target.value)}
           onMouseLeave={() => togglePopOver(false)}

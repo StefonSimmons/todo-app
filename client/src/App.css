@@ -2,14 +2,17 @@ body{
   margin: 0;
   overflow: auto;
   height: 100%;
+  width: 100%
 }
 html {
   overflow: hidden;
   height: 100%;
+  width: 100%
 }
+
 
 
 
 @import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
 
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');

@@ -28,3 +28,14 @@
 .not-complete{
   color: black
 }
+
+@media(max-width: 1040px){
+  .hover-popover-container{
+    flex-direction: row-reverse;
+    right: 10%
+  }
+  .hover-popover-arrow{
+    transform: rotate(-135deg);
+    right: 5%
+  }
+}

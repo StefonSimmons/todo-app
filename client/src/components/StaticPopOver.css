@@ -1,0 +1,57 @@
+.static-popover-container{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: -15%;
+  top: -100%;
+}
+
+.static-popover{
+  height: 28px;
+  width: 28px;
+  padding: 5px;
+  background: #54ae92;
+  color: white;
+  font-family: 'Nerko One', cursive;
+  font-size: 28px;
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.static-popover > h6{
+  margin: 0;
+}
+
+@media(max-width: 768px){
+  .nav-completed-container > .static-popover-container{
+    right: 0%;
+    top: 0%;
+  }
+  .mobile-completed-container > .static-popover-container{
+    right: 5%;
+    top: -150%;
+  }
+  .static-popover{
+    border-radius: 45px 45px 45px 5px;
+    padding: 3px;
+  }
+}
+@media(max-width: 575px){
+  .mobile-completed-container > .static-popover-container{
+    right: 35%;
+    top: -150%;
+  }
+}
+@media(max-width: 475px){
+  .mobile-completed-container > .static-popover-container{
+    right: 15%;
+    top: -150%;
+  }
+}
+@media(max-width:375px){
+  .mobile-completed-container > .static-popover-container{
+    right: 5%;
+    top: -150%;
+  }
+}

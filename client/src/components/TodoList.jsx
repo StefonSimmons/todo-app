@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+
 import CompletionModal from './CompletionModal'
 import DeletionModal from './DeletionModal'
+import OptionsModal from './OptionsModal'
 import TodoItems from './TodoItems'
 
 import { setPriority } from '../utilities/priorititize'
@@ -15,6 +17,7 @@ export default function TodoList(props) {
   const [formData, setFormData] = useState()
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
+  const [moreOptionsItemID, showMoreOptions] = useState(null)
 
   const [draggedIDX, setDragged] = useState(false)
   const [readyToSave, setReadyToSave] = useState(false)
@@ -44,24 +47,27 @@ export default function TodoList(props) {
           <div>
             {props.todos.map((item, idx) => {
               return (
-                <TodoItems
-                  item={item}
-                  idx={idx}
-                  setFormData={setFormData}
-                  saved={saved}
-                  updateTodos={props.updateTodos}
-                  todos={props.todos}
-                  task={task}
-                  onDrag={onDrag}
-                  draggedIDX={draggedIDX}
-                  setDragged={setDragged}
-                  setReadyToSave={setReadyToSave}
-                  setDeletionItemID={setDeletionItemID}
-                  setCompletionItemID={setCompletionItemID}
-                  currentUser={props.currentUser}
-                  gifs={props.gifs}
-                  setGif={props.setGif}
-                />
+                <React.Fragment key={idx}>
+                  <TodoItems
+                    item={item}
+                    idx={idx}
+                    setFormData={setFormData}
+                    saved={saved}
+                    updateTodos={props.updateTodos}
+                    todos={props.todos}
+                    task={task}
+                    onDrag={onDrag}
+                    draggedIDX={draggedIDX}
+                    setDragged={setDragged}
+                    setReadyToSave={setReadyToSave}
+                    setDeletionItemID={setDeletionItemID}
+                    setCompletionItemID={setCompletionItemID}
+                    showMoreOptions={showMoreOptions}
+                    currentUser={props.currentUser}
+                    gifs={props.gifs}
+                    setGif={props.setGif}
+                  />
+                </React.Fragment>
               )
             })}
           </div>
@@ -87,6 +93,14 @@ export default function TodoList(props) {
           setDeletionItemID={setDeletionItemID}
           deletionItemID={deletionItemID}
           deleteToDoItem={props.deleteToDoItem}
+        />
+      }
+      {
+        moreOptionsItemID &&
+        <OptionsModal
+          setDeletionItemID={setDeletionItemID}
+          showMoreOptions={showMoreOptions}
+          moreOptionsItemID={moreOptionsItemID}
         />
       }
 

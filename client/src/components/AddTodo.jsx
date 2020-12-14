@@ -30,7 +30,7 @@ export default function AddTodo(props) {
 
 
   return (
-    <div className="main">
+    <div className="create-main">
       <section className="create-form-back">
         <h2 className="create-title">Add A New Will-Do Item</h2>
         <form onSubmit={handleSubmit} className="create-form">

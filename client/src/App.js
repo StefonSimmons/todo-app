@@ -9,6 +9,7 @@ import { todoBaseURL, usersBaseURL, config } from './services/index'
 import { api } from './services/apiConfig'
 
 import './App.css'
+import MobileMenu from './components/MobileMenu'
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
   const [currentUser, setCurrUser] = useState({ fields: null })
   const [unauthorized, setUnauthorized] = useState(false)
   const history = useHistory()
+
+  const [mobileMenu, showMobileMenu] = useState(false)
 
   // ============================================
   //      API CALLS TO AIRTABLE AND EXPRESS
@@ -164,11 +167,13 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div onClick={()=> showMobileMenu(false)}>
       <Nav
         currentUser={currentUser}
         logout={logout}
         completed={completed}
+        mobileMenu={mobileMenu}
+        showMobileMenu={showMobileMenu}
       />
 
       <Routes
@@ -187,7 +192,11 @@ function App() {
         setFormData={setRegCred}
         completed={completed}
       />
-
+      <MobileMenu
+        mobileMenu={mobileMenu}
+        logout={logout}
+        completed={completed}
+      />
     </div>
   );
 }
