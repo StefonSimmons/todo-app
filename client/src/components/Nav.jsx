@@ -10,7 +10,7 @@ import './Nav.css'
 export default function Nav({ currentUser, logout, completed, showMobileMenu, mobileMenu }) {
   return (
     <>
-      <nav className="nav-container">
+      <nav id='top' className="nav-container">
         {currentUser.fields ?
           <>
             <h3>Hi, {currentUser.fields.username}!</h3>

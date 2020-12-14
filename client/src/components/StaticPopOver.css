@@ -4,6 +4,7 @@
   position: absolute;
   right: -15%;
   top: -100%;
+  text-decoration: none;
 }
 
 .static-popover{
