@@ -34,6 +34,9 @@
 .mobile-menu-content.close{
   animation: slideOut .5s ease-in-out
 }
+.mobile-completed-container{
+  position: relative;
+}
 .mobile-menu-lnk{
   display: none;
   text-decoration: none;

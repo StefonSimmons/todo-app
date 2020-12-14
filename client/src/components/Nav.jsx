@@ -18,7 +18,7 @@ export default function Nav({ currentUser, logout, completed, showMobileMenu, mo
             <Link className="nav-lnk new" to="/add-todo">New Item</Link>
             <div className="nav-completed-container">
               <Link className="nav-lnk completed" to="/completed-tasks">Completed</Link>
-              <StaticPopOver completed={completed} />
+              {!mobileMenu && <StaticPopOver completed={completed} />}
             </div>
             <Link className="nav-lnk logout" to="/register-login" onClick={logout}>Logout</Link>
             <img className="nav-hamburger" src={hamburgerIcon} alt="menu"

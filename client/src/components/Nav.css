@@ -37,30 +37,6 @@
   position: relative
 }
 
-.static-popover-container{
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: -15%;
-  top: -100%;
-}
-
-.static-popover{
-  height: 28px;
-  width: 28px;
-  padding: 5px;
-  background: #54ae92;
-  color: white;
-  font-family: 'Nerko One', cursive;
-  font-size: 28px;
-  border-radius: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.static-popover > h6{
-  margin: 0;
-}
 h6 > span{
   font-size: 18px;
 }
@@ -83,6 +59,9 @@ h6 > span{
 
 @media(max-width: 675px){
   .nav-completed-container{
+    position: static
+  }
+  .nav-lnk.completed{
     display: none
   }
   .nav-container{
