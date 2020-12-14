@@ -12,12 +12,12 @@ export default function MobileMenu({ mobileMenu, logout, completed }) {
         <Link className="mobile-menu-lnk list" to='/'>My List</Link>
         <hr className="mobile-menu-lnk list" />
         <Link className="mobile-menu-lnk new" to="/add-todo">New Item</Link>
-        <hr className="remove-hr" />
+        <hr className="mobile-menu-lnk new"/>
         <div className="mobile-completed-container">
           <Link className="mobile-menu-lnk completed" to="/completed-tasks">Completed</Link>
-          <StaticPopOver completed={completed} />
+          {<StaticPopOver completed={completed} />}
         </div>
-        <hr className="remove-hr" />
+        <hr className="mobile-menu-lnk completed"/>
         <Link className="mobile-menu-lnk logout" to="/register-login" onClick={logout}>Logout</Link>
       </section>
     </div>

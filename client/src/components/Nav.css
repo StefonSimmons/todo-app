@@ -52,21 +52,21 @@ h6 > span{
   .nav-lnk.logout{
     display: none
   }
-  .nav-lnk.new{
+  .nav-lnk.completed{
     display: none;
   }
-}
-
-@media(max-width: 675px){
   .nav-completed-container{
     position: static
-  }
-  .nav-lnk.completed{
-    display: none
   }
   .nav-container{
     justify-content: space-between;
     padding: 0 30px;
+  }
+}
+
+@media(max-width: 675px){
+  .nav-lnk.new{
+    display: none
   }
 }
 

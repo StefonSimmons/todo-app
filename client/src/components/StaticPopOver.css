@@ -23,7 +23,7 @@
   margin: 0;
 }
 
-@media(max-width: 675px){
+@media(max-width: 768px){
   .nav-completed-container > .static-popover-container{
     right: 0%;
     top: 0%;
@@ -35,5 +35,23 @@
   .static-popover{
     border-radius: 45px 45px 45px 5px;
     padding: 3px;
+  }
+}
+@media(max-width: 575px){
+  .mobile-completed-container > .static-popover-container{
+    right: 35%;
+    top: -150%;
+  }
+}
+@media(max-width: 475px){
+  .mobile-completed-container > .static-popover-container{
+    right: 15%;
+    top: -150%;
+  }
+}
+@media(max-width:375px){
+  .mobile-completed-container > .static-popover-container{
+    right: 5%;
+    top: -150%;
   }
 }

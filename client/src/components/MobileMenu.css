@@ -58,12 +58,12 @@
   .mobile-menu-lnk.logout{
     display: block
   }
-  .mobile-menu-lnk.new{
+  .mobile-menu-lnk.completed{
     display: block
   }
 }
 @media(max-width: 675px){
-  .mobile-menu-lnk.completed{
+  .mobile-menu-lnk.new{
     display: block
   }
   .remove-hr{
