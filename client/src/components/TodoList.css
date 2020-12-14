@@ -53,3 +53,9 @@
 .todo-list-save.save-me:active{
   transform: scale(.94);
 }
+
+@media(max-width: 425px){
+  .todo-list-save{
+    visibility: hidden;
+  }
+}
