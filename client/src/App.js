@@ -167,7 +167,7 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div onClick={()=> showMobileMenu(false)}>
       <Nav
         currentUser={currentUser}
         logout={logout}

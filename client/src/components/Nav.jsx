@@ -22,7 +22,10 @@ export default function Nav({ currentUser, logout, completed, showMobileMenu, mo
             </div>
             <Link className="nav-lnk logout" to="/register-login" onClick={logout}>Logout</Link>
             <img className="nav-hamburger" src={hamburgerIcon} alt="menu"
-              onClick={() => showMobileMenu(!mobileMenu)}
+              onClick={(e) => {
+                e.stopPropagation()
+                showMobileMenu(!mobileMenu)
+              }}
             />
           </>
           :

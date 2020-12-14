@@ -85,14 +85,15 @@ h6 > span{
   .nav-completed-container{
     display: none
   }
+  .nav-container{
+    justify-content: space-between;
+    padding: 0 30px;
+  }
 }
 
 @media(max-width: 475px){
   .nav-lnk.list{
     display: none;
   }
-  .nav-container{
-    justify-content: space-between;
-    padding: 0 30px;
-  }
+
 }
