@@ -12,7 +12,7 @@
 .mobile-menu-content{
   height: 100%;
   width: 25%;
-  background: white;
+  background: rgb(230, 217, 217);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -22,12 +22,15 @@
 .mobile-menu-lnk{
   display: none;
   text-decoration: none;
-  font-family: 'Nerko One', cursive;
+  font-family: 'Open Sans', sans-serif;
   letter-spacing: 2.5px;
   font-weight: 700;
   color: black; 
   padding: 0 15px;
-  font-size: 24px;
+  font-size: 18px;
+}
+.remove-hr{
+  display: none
 }
 
 @media(max-width: 768px){
@@ -43,6 +46,9 @@
 }
 @media(max-width: 675px){
   .mobile-menu-lnk.completed{
+    display: block
+  }
+  .remove-hr{
     display: block
   }
 }
