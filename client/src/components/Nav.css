@@ -72,10 +72,26 @@ h6 > span{
   .nav-hamburger{
     display: block;
   }
-  .logout{
+  .nav-lnk.logout{
     display: none
   }
-  .new{
+  .nav-lnk.new{
     display: none;
+  }
+}
+
+@media(max-width: 675px){
+  .nav-completed-container{
+    display: none
+  }
+}
+
+@media(max-width: 475px){
+  .nav-lnk.list{
+    display: none;
+  }
+  .nav-container{
+    justify-content: space-between;
+    padding: 0 30px;
   }
 }

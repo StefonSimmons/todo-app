@@ -194,6 +194,9 @@ function App() {
       />
       <MobileMenu
         mobileMenu={mobileMenu}
+        currentUser={currentUser}
+        logout={logout}
+        completed={completed}
       />
     </div>
   );

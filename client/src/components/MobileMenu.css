@@ -5,7 +5,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  display: flex;
+  display: none;
   justify-content: flex-end;
 }
 
@@ -13,5 +13,49 @@
   height: 100%;
   width: 25%;
   background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 15px
+}
 
+.mobile-menu-lnk{
+  display: none;
+  text-decoration: none;
+  font-family: 'Nerko One', cursive;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  color: black; 
+  padding: 0 15px;
+  font-size: 24px;
+}
+
+@media(max-width: 768px){
+  .mobile-menu-back{
+    display: flex
+  }
+  .mobile-menu-lnk.logout{
+    display: block
+  }
+  .mobile-menu-lnk.new{
+    display: block
+  }
+}
+@media(max-width: 675px){
+  .mobile-menu-lnk.completed{
+    display: block
+  }
+}
+
+@media(max-width: 575px){
+  .mobile-menu-content{
+    box-sizing: border-box;
+    width: 50%;
+  }
+}
+
+@media(max-width: 475px){
+  .mobile-menu-lnk.list{
+    display: block
+  }
 }
