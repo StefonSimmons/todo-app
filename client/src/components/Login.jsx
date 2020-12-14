@@ -22,7 +22,6 @@ export default function Login({ login, unauthorized }) {
       password: ''
     })
   }
-  console.log(console.log(process.env))
   return (
 
     <form className="register-form" onSubmit={(e) => handleSubmit(e)}>

@@ -62,6 +62,9 @@ h6 > span{
     justify-content: space-between;
     padding: 0 30px;
   }
+  .nav-lnk.register-login{
+    margin: 0 auto;
+  }
 }
 
 @media(max-width: 675px){
