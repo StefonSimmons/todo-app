@@ -10,7 +10,7 @@ import './TodoItems.css'
 
 export default function TodoItems({
   item, idx, setFormData, saved, draggedIDX, setDragged, onDrag, task, updateTodos, todos, setReadyToSave,
-  setDeletionItemID, setCompletionItemID, gifs, setGif, currentUser
+  setDeletionItemID, setCompletionItemID,showMoreOptions, gifs, setGif, currentUser
 }) {
 
   const [moving, updateMove] = useState(false)
@@ -38,7 +38,10 @@ export default function TodoItems({
         <h4>{item.fields.name}</h4>
       </section>
       <section className="todo-item-options">
-        <img src={moreOptions} alt="more"/>
+        <img src={moreOptions} alt="more"
+          className="todo-item-more"
+          onClick={() => showMoreOptions(item.id)}
+        />
         <Link to={`/items/${item.id}`} className="todo-item-link">Details</Link>
         <img
           src={deleteIcon} alt="delete"

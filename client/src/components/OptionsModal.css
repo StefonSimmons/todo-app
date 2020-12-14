@@ -1,0 +1,50 @@
+
+.options-modal-back{
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.options-modal-back > div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.options-modal-close{
+  cursor: pointer;
+}
+
+.options-modal-content{
+  background: white;
+  border: solid 4px black;
+  width: 400px;
+  height: 350px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.options-item-link{
+  color: black;
+  font-family: 'Nerko One', cursive;
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+
+.options-item-link:hover{
+  color: rgb(29, 28, 28);
+  transform: scale(1.05)
+}
+
+.options-item-delete{
+  height: 50px;
+  cursor: pointer;
+}

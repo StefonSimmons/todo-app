@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import CompletionModal from './CompletionModal'
 import DeletionModal from './DeletionModal'
 import TodoItems from './TodoItems'
+import OptionsModal from './OptionsModal'
 
 import { setPriority } from '../utilities/priorititize'
 
@@ -15,6 +16,7 @@ export default function TodoList(props) {
   const [formData, setFormData] = useState()
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
+  const [moreOptionsItemID, showMoreOptions] = useState(null)
 
   const [draggedIDX, setDragged] = useState(false)
   const [readyToSave, setReadyToSave] = useState(false)
@@ -59,6 +61,7 @@ export default function TodoList(props) {
                     setReadyToSave={setReadyToSave}
                     setDeletionItemID={setDeletionItemID}
                     setCompletionItemID={setCompletionItemID}
+                    showMoreOptions={showMoreOptions}
                     currentUser={props.currentUser}
                     gifs={props.gifs}
                     setGif={props.setGif}
@@ -89,6 +92,14 @@ export default function TodoList(props) {
           setDeletionItemID={setDeletionItemID}
           deletionItemID={deletionItemID}
           deleteToDoItem={props.deleteToDoItem}
+        />
+      }
+      {
+        moreOptionsItemID &&
+        <OptionsModal
+          setDeletionItemID={setDeletionItemID}
+          showMoreOptions={showMoreOptions}
+          moreOptionsItemID={moreOptionsItemID}
         />
       }
 
