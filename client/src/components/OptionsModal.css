@@ -48,3 +48,10 @@
   height: 50px;
   cursor: pointer;
 }
+
+
+@media(max-width: 475px){
+  .options-modal-content{
+    width: 84vw;
+  }
+}
