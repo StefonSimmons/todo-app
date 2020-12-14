@@ -7,7 +7,6 @@
   background-image: url('https://media.giphy.com/media/uf3jumi0zzUv6/giphy.gif');
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 2;
 }
 
 .nav-container > h3{
@@ -72,6 +71,7 @@ h6 > span{
 @media(max-width: 768px){
   .nav-hamburger{
     display: block;
+    cursor: pointer;
   }
   .nav-lnk.logout{
     display: none

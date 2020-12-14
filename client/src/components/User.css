@@ -33,7 +33,7 @@
 }
 
 #small{
-  transform: scale(.94);
+  transform: scale(.93);
   background-color: rgb(212, 201, 201);
 }
 
@@ -56,3 +56,8 @@
   background: rgba(0, 0, 0, .1);
 }
 
+@media(max-width: 365px){
+  .user-tabs > h1{
+    width: 140px
+  }
+}

@@ -53,3 +53,14 @@
   border: solid 2px red;
   box-shadow: 0 0 5px red;
 }
+
+@media(max-width: 475px){
+  .register-form{
+    width: 84vw;
+  }
+
+  .register-btn{
+    height: 40px;
+    font-size: 18px
+  }
+}
