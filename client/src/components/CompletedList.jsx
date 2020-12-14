@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import DeletionModal from './DeletionModal'
 import CompletionModal from './CompletionModal'
+import OptionsModal from './OptionsModal'
 import CompletedItems from './CompletedItems'
 
 import './CompletedList.css'
@@ -11,7 +12,8 @@ export default function CompletedList(props) {
   const [formData, setFormData] = useState()
   const [deletionItemID, setDeletionItemID] = useState(null)
   const [completionItemID, setCompletionItemID] = useState(null)
- 
+  const [moreOptionsItemID, showMoreOptions] = useState(null)
+
   return (
     <div className="completed-main">
       <div className="completed-back">
@@ -27,6 +29,7 @@ export default function CompletedList(props) {
                   setDeletionItemID={setDeletionItemID}
                   completionItemID={completionItemID}
                   setCompletionItemID={setCompletionItemID}
+                  showMoreOptions={showMoreOptions}
                   currentUser={props.currentUser}
                   gifs={props.gifs}
                   setGif={props.setGif}
@@ -52,6 +55,14 @@ export default function CompletedList(props) {
           setDeletionItemID={setDeletionItemID}
           deletionItemID={deletionItemID}
           deleteToDoItem={props.deleteToDoItem}
+        />
+      }
+      {
+        moreOptionsItemID &&
+        <OptionsModal
+          setDeletionItemID={setDeletionItemID}
+          showMoreOptions={showMoreOptions}
+          moreOptionsItemID={moreOptionsItemID}
         />
       }
     </div>

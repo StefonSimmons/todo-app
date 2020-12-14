@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+
 import CompletionModal from './CompletionModal'
 import DeletionModal from './DeletionModal'
-import TodoItems from './TodoItems'
 import OptionsModal from './OptionsModal'
+import TodoItems from './TodoItems'
 
 import { setPriority } from '../utilities/priorititize'
 
