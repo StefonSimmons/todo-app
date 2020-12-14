@@ -98,10 +98,19 @@
     display: none;
   }
   .todo-item-options{
-    width: 100px;
+    width: 150px;
   }
   .todo-item-more{
     display: block;
     cursor: pointer;
+  }
+}
+
+@media(max-width:475px){
+  .todo-item-options{
+    justify-content: flex-end;
+  }
+  .todo-item-more{
+    margin: 0 auto;
   }
 }
