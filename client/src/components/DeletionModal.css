@@ -53,3 +53,10 @@
 .deletion-modal-btn:hover{
   box-shadow: 4px 5px 5px grey;
 }
+
+
+@media(max-width: 475px){
+  .deletion-modal-content{
+    width: 90vw;
+  }
+}

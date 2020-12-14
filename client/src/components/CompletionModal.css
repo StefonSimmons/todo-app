@@ -53,3 +53,12 @@
 .completion-modal-btn:hover{
   box-shadow: 4px 5px 5px grey;
 }
+
+@media(max-width: 475px){
+  .completion-modal-content{
+    width: 92vw;
+  }
+  .completion-modal-text{
+    padding: 0 15px
+  }
+}
