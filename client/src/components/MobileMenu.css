@@ -1,0 +1,17 @@
+.mobile-menu-back{
+  height: 87.325728771vh;
+  width: 100vw;
+  background: rgba(0,0,0,.3);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobile-menu-content{
+  height: 100%;
+  width: 25%;
+  background: white;
+
+}

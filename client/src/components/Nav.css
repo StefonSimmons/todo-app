@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-evenly;
   height: 100px;
+  padding: 0 15px;
   background-image: url('https://media.giphy.com/media/uf3jumi0zzUv6/giphy.gif');
   background-size: cover;
   background-repeat: no-repeat;
@@ -62,4 +63,19 @@
 }
 h6 > span{
   font-size: 18px;
+}
+
+.nav-hamburger{
+  display: none
+}
+@media(max-width: 768px){
+  .nav-hamburger{
+    display: block;
+  }
+  .logout{
+    display: none
+  }
+  .new{
+    display: none;
+  }
 }

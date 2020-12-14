@@ -71,6 +71,7 @@ export default function Routes({
           gifs={gifs}
         />
       </Route>
+      
     </div>
   )
 }
