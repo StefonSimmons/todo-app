@@ -17,9 +17,10 @@ Originally, the app was a part of a React.js code along session I did for my sof
 ## Post MVP
 Upload a picture, video or audio and/or desciption of what you've done and how it went.
 
-## Deployed to Vercel
+## React Code Deployed to Netlify
 
-* ["Will-Do" app - (https://frontend-room.vercel.app/)](https://frontend-room.vercel.app/)
+* ["Will-Do" app - (https://will-do.netlify.app/)](https://will-do.netlify.app/)
+## Express Code Deployed to Heroku's cloud platform
 
 <br/>
 
